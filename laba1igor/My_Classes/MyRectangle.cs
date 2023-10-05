@@ -84,15 +84,7 @@ namespace laba1igor.My_Classes
 
     public void ResizeRectangle(Graphics canvas, float xNewSize, float yNewSize) 
     {
-      if (xNewSize > XSize || yNewSize > YSize)
-            {
-                if (_xStart + xNewSize <= 877 && _yStart + yNewSize <= 500)
-                {
-                    XSize = (int)xNewSize;
-                    YSize = (int)yNewSize;
-                }
-            }
-      else
+            if (xNewSize > 0 && yNewSize > 0 && ((xNewSize < XSize && yNewSize < YSize) || _xStart + xNewSize <= 877 && _yStart + yNewSize <= 500))
             {
                 XSize = (int)xNewSize;
                 YSize = (int)yNewSize;

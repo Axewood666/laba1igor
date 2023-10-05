@@ -11,12 +11,14 @@ namespace laba1igor
     {
         private MyEllipse[] _elipse;
         private int _iter = 0;
-        private int X_size = 877;
-        private int Y_size = 500;
+        private int X_size;
+        private int Y_size;
         private Random rand = new Random();
         public Form_Line()
         {
             InitializeComponent();
+            X_size = pictureBox1.Width;
+            Y_size = pictureBox1.Height;
             buf = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             g = Graphics.FromImage(buf);
             g.Clear(Color.WhiteSmoke);

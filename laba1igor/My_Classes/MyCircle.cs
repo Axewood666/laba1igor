@@ -77,7 +77,7 @@ namespace laba1igor.My_Classes
 
     public void ResizeCircle(Graphics canvas, float sizeChange)
     {
-            if (sizeChange < _radius || _xCenter + sizeChange <= 877 && _yCenter + sizeChange <= 500 && _xCenter - sizeChange >= 0 && _yCenter - sizeChange >= 0)
+            if (sizeChange > 0 && sizeChange < _radius || _xCenter + sizeChange <= 877 && _yCenter + sizeChange <= 500 && _xCenter - sizeChange >= 0 && _yCenter - sizeChange >= 0)
             {
                 _radius = sizeChange;
             }

@@ -70,14 +70,7 @@ namespace laba1igor.My_Classes
 
     public void ResizeSquare(Graphics canvas, float SizeChange)
     {
-        if (SizeChange > _side)
-        {
-            if (_xCenter + SizeChange <= 877 && _yCenter + SizeChange <= 500)
-            {
-                _side = SizeChange;
-            }
-        }
-        else
+        if (SizeChange > 0 && SizeChange < _side || _xCenter + SizeChange <= 877 && _yCenter + SizeChange <= 500)
         {
             _side = SizeChange;
         }

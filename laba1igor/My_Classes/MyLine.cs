@@ -86,20 +86,11 @@ namespace laba1igor.My_Classes
 
         public void ResizeEllipse(Graphics canvas, float xNewSize, float yNewSize)
         {
-            if (xNewSize > XSize || yNewSize > YSize)
-            {
-                if (_xStart + xNewSize/2 <= 877 && _yStart + yNewSize/2 <= 500 && _xStart - xNewSize / 2 >= 0 && _yStart - yNewSize / 2 >= 0)
-                {
-                    XSize = (int)xNewSize;
-                    YSize = (int)yNewSize;
-                }
-            }
-            else
+            if (xNewSize > 0 && yNewSize > 0 && ((xNewSize < XSize && yNewSize < YSize) || _xStart + xNewSize / 2 <= 877 && _yStart + yNewSize / 2 <= 500 && _xStart - xNewSize / 2 >= 0 && _yStart - yNewSize / 2 >= 0))
             {
                 XSize = (int)xNewSize;
                 YSize = (int)yNewSize;
             }
-
             Show(canvas);
         }
     }
