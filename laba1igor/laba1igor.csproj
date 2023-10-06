@@ -80,6 +80,7 @@
     <Compile Include="My_Classes\MySquare.cs" />
     <Compile Include="My_Classes\MyLine.cs" />
     <Compile Include="My_Classes\MyRectangle.cs" />
+    <Compile Include="My_Classes\MyPoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

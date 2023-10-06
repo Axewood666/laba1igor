@@ -88,14 +88,14 @@ namespace laba1igor
             this.textBox1.Location = new System.Drawing.Point(75, 533);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(39, 20);
-            this.textBox1.TabIndex = 3;
+            this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(75, 559);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(39, 20);
-            this.textBox2.TabIndex = 4;
+            this.textBox2.TabIndex = 2;
             // 
             // button1
             // 
@@ -112,7 +112,7 @@ namespace laba1igor
             this.textBox3.Location = new System.Drawing.Point(75, 611);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(39, 20);
-            this.textBox3.TabIndex = 6;
+            this.textBox3.TabIndex = 4;
             // 
             // label3
             // 
@@ -128,7 +128,7 @@ namespace laba1igor
             this.button2.Location = new System.Drawing.Point(465, 516);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 40);
-            this.button2.TabIndex = 8;
+            this.button2.TabIndex = 9;
             this.button2.Text = "Удалить прямоугольник";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -147,7 +147,7 @@ namespace laba1igor
             this.textBox5.Location = new System.Drawing.Point(404, 524);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(29, 20);
-            this.textBox5.TabIndex = 12;
+            this.textBox5.TabIndex = 6;
             // 
             // label6
             // 
@@ -162,7 +162,7 @@ namespace laba1igor
             this.button4.Location = new System.Drawing.Point(465, 562);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(96, 35);
-            this.button4.TabIndex = 16;
+            this.button4.TabIndex = 11;
             this.button4.Text = "Изменить положение";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -190,21 +190,21 @@ namespace laba1igor
             this.textBox6.Location = new System.Drawing.Point(404, 576);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(29, 20);
-            this.textBox6.TabIndex = 19;
+            this.textBox6.TabIndex = 7;
             // 
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(404, 602);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(29, 20);
-            this.textBox7.TabIndex = 20;
+            this.textBox7.TabIndex = 8;
             // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(748, 507);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(124, 39);
-            this.button5.TabIndex = 21;
+            this.button5.TabIndex = 13;
             this.button5.Text = "Создать случайные прямоугольники";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -214,7 +214,7 @@ namespace laba1igor
             this.button3.Location = new System.Drawing.Point(465, 603);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(96, 40);
-            this.button3.TabIndex = 13;
+            this.button3.TabIndex = 12;
             this.button3.Text = "Изменить размер";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -233,7 +233,7 @@ namespace laba1igor
             this.textBox4.Location = new System.Drawing.Point(75, 585);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(39, 20);
-            this.textBox4.TabIndex = 23;
+            this.textBox4.TabIndex = 3;
             // 
             // Form_Rect
             // 

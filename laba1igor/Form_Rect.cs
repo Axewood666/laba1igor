@@ -10,6 +10,7 @@ namespace laba1igor
     public partial class Form_Rect : Form
     {
         private MyRectangle[] _rectangles;
+        private MyPoint[] _points;
         private int _iter = 0;
         private int X_size;
         private int Y_size;
@@ -20,9 +21,10 @@ namespace laba1igor
             buf = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             g = Graphics.FromImage(buf);
             g.Clear(Color.WhiteSmoke);
-            X_size = pictureBox1.Width;
-            Y_size = pictureBox1.Height;
+            X_size = pictureBox1.Width - 3;
+            Y_size = pictureBox1.Height - 3;
             _rectangles = new MyRectangle[5];
+            _points = new MyPoint[5];
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,6 +33,7 @@ namespace laba1igor
             if (_iter == _rectangles.Length)
             {
                 Array.Resize(ref _rectangles, _iter + 1);
+                Array.Resize(ref _points, _iter + 1);
             }
             var x_cord = float.TryParse(textBox1.Text, out var x1);
             var y_cord = float.TryParse(textBox2.Text, out var y1);
@@ -38,9 +41,10 @@ namespace laba1igor
             var Width = int.TryParse(textBox4.Text, out var W);
             if (x_cord && y_cord && Height && Width)
             {
-                if (x1 >= 0 && x1 + W <= X_size && y1 >= 0 && y1 + H <= Y_size)
+                if (x1 >= 3 && x1 + W <= X_size && y1 >= 3 && y1 + H <= Y_size)
                 {
-                    _rectangles[_iter] = new MyRectangle(x1, y1, W, H);
+                    _points[_iter] = new MyPoint(x1,y1);
+                    _rectangles[_iter] = new MyRectangle(_points[_iter], W, H);
                     _rectangles[_iter].Show(g);
                     _iter++;
                 }
@@ -61,6 +65,7 @@ namespace laba1igor
                 for (var i = _iter - 1; i >= 0; i--)
                 {
                     _rectangles[i] = null;
+                    _points[i] = null;
                 }
                 _iter = 0;
                 g.Clear(Color.WhiteSmoke);
@@ -100,7 +105,7 @@ namespace laba1igor
                     {   
                         float RandH = rand.Next(10, 80);
                         float RandW = rand.Next(10, 80);
-                        _rectangles[i].ResizeRectangle(g, RandW, RandH);
+                        _rectangles[i].ResizeRectangle(g, RandW, RandH, X_size, Y_size);
                     }
                 }
             }
@@ -113,7 +118,7 @@ namespace laba1igor
                     {
                         g.Clear(Color.WhiteSmoke);
 
-                        if (_rectangles[iterator] != null) _rectangles[iterator].ResizeRectangle(g, W, H);
+                        if (_rectangles[iterator] != null) _rectangles[iterator].ResizeRectangle(g, W, H, X_size, Y_size);
                         else label6.Text = "прямоугольника с таким номером нет!";
                         for (var i = 0; i < _iter; i++)
                         {
@@ -147,9 +152,9 @@ namespace laba1igor
                 {
                     if (_rectangles[i] != null)
                     {
-                        newX = rand.Next(-50, 50);
-                        newY = rand.Next(-50, 50);
-                        _rectangles[i].MoveTo(g, newX, newY);
+                        float RandX = rand.Next(-50, 50);
+                        float RandY = rand.Next(-50, 50);
+                        _rectangles[i].MoveTo(g, RandX, RandY, X_size, Y_size);
                     }
                 }
             }
@@ -167,7 +172,7 @@ namespace laba1igor
                         {
                             if (i == iterator)
                             {
-                                _rectangles[i].MoveTo(g, newX, newY);
+                                _rectangles[i].MoveTo(g, newX, newY, X_size, Y_size);
                             }
                             else
                             {
@@ -204,18 +209,22 @@ namespace laba1igor
         private void RandomArray()
         {
             _rectangles = null;
+            _points = null;
             g.Clear(Color.WhiteSmoke);
             var randIter = rand.Next(1, 10);
             _rectangles = new MyRectangle[randIter];
+            _points = new MyPoint[randIter];
             _iter = randIter;
 
 
             for (var i = 0; i < _iter; i++)
             {
-                _rectangles[i] = new MyRectangle(rand.Next(50, 800),
-                                           rand.Next(50, 400),
+                _points[i] = new MyPoint(rand.Next(50, 800),
+                                           rand.Next(50, 400));
+
+                _rectangles[i] = new MyRectangle(_points[i],
                                             rand.Next(25, 100),
-                                            rand.Next(25,100));
+                                            rand.Next(25, 100));
                 _rectangles[i].Show(g);
             }
 

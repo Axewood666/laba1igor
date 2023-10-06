@@ -1,9 +1,11 @@
 ﻿using System.Drawing;
+using System.Net;
 using System.Security.Cryptography;
+using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    public class MyRectangle
+    internal class MyRectangle
   {
     private float _xStart;
     private float _yStart;
@@ -16,14 +18,14 @@ namespace laba1igor.My_Classes
 
     public int XSize
         {
-            get => _xSize;
-            set
+        get => _xSize;
+        set
+        {
+            if (value > 0)
             {
-                if (value > 0)
-                {
-                    _xSize = value;
-                }
+                _xSize = value;
             }
+        }
         }
 
     public int YSize
@@ -49,15 +51,14 @@ namespace laba1igor.My_Classes
       get => _yStart;
       set => _yStart = value;
     }
+    public MyPoint CordPoint 
+        { get; set; }
 
-    public MyRectangle(float coordXStart, float coordYStart,
-      int xSizeInit, int ySizeInit)
+        public MyRectangle(MyPoint myPoint, int xSizeInit, int ySizeInit)
     {
             if (xSizeInit > 0 && ySizeInit > 0)
             {
-                XStart = coordXStart;
-                YStart = coordYStart;
-
+                CordPoint = myPoint;
                 XSize = xSizeInit;
                 YSize = ySizeInit;
             }
@@ -65,26 +66,26 @@ namespace laba1igor.My_Classes
 
     public void Show(Graphics canvas)
     {
-      canvas.DrawRectangle(pen, XStart, YStart, XSize, YSize); 
-      canvas.FillRectangle(brush, XStart, YStart, XSize, YSize);
+      canvas.DrawRectangle(pen, CordPoint.XStart, CordPoint.YStart, XSize, YSize); 
+      canvas.FillRectangle(brush, CordPoint.XStart, CordPoint.YStart, XSize, YSize);
     }
 
-    public void MoveTo(Graphics canvas, float newX, float newY)
+    public void MoveTo(Graphics canvas, float newX, float newY, int BoxSizeX, int BoxSizeY)
     {
-      if (_xStart + _xSize + newX < 877 && _xStart + newX > 0)
+      if (CordPoint.XStart + _xSize + newX < BoxSizeX && CordPoint.XStart + newX > 3)
             {
-                XStart += newX;
+                CordPoint.ChangeX(newX);
             }
-      if (_yStart + _ySize + newY < 500 && _yStart + newY > 0)
+      if (CordPoint.YStart + _ySize + newY < BoxSizeY && CordPoint.YStart + newY > 3)
             {
-                YStart += newY;
+                CordPoint.ChangeY(newY);
             }
       Show(canvas);
     }
 
-    public void ResizeRectangle(Graphics canvas, float xNewSize, float yNewSize) 
+    public void ResizeRectangle(Graphics canvas, float xNewSize, float yNewSize, int BoxSizeX, int BoxSizeY) 
     {
-            if (xNewSize > 0 && yNewSize > 0 && ((xNewSize < XSize && yNewSize < YSize) || _xStart + xNewSize <= 877 && _yStart + yNewSize <= 500))
+            if (xNewSize > 0 && yNewSize > 0 && ((xNewSize < XSize && yNewSize < YSize) || _xStart + xNewSize <= BoxSizeX && _yStart + yNewSize <= BoxSizeY))
             {
                 XSize = (int)xNewSize;
                 YSize = (int)yNewSize;
