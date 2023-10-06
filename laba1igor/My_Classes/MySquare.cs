@@ -2,47 +2,35 @@
 
 namespace laba1igor.My_Classes
 {
-    public class MySquare
+    internal class MySquare
   {
-    private float _xCenter;
-    private float _yCenter;
-    private float _side;       
-    
-    public float XCenter 
-    {
-      get => _xCenter;
-      set => _xCenter = value;
-    }
-    public float YCenter 
-    {
-      get => _yCenter;
-      set => _yCenter = value;
-    }
-  
-    public float Side
+    //private float _xCenter;
+    //private float _yCenter;
+    private float _side;
+
+        //public float XCenter 
+        //{
+        //  get => _xCenter;
+        //  set => _xCenter = value;
+        //}
+        //public float YCenter 
+        //{
+        //  get => _yCenter;
+        //  set => _yCenter = value;
+        //}
+    public MyPoint CordPoint
+    { get; set; }
+        public float Side
     {
       get => _side;
       set => _side = value;
     }
 
-    public MySquare(float coordXCenter, float coordYCenter,
+    public MySquare(MyPoint Cordinates,
       float side)
     {
-      XCenter = coordXCenter;
-      YCenter = coordYCenter;
-
+      CordPoint = Cordinates;
       Side = side;
-    }
-  
-    public MySquare(int coordXCenter, int coordYCenter,
-      int side)
-    {
-
-      XCenter = coordXCenter;
-      YCenter = coordYCenter;
-
-      Side = side;
-
     }
 
     public void Show(Graphics canvas)
@@ -50,27 +38,27 @@ namespace laba1igor.My_Classes
       var pen = new Pen(Color.Black, 6);
       var brush = new SolidBrush(Color.DarkOrchid);
 
-      canvas.DrawRectangle(pen, _xCenter, _yCenter, _side, _side);
-      canvas.FillRectangle(brush, _xCenter, _yCenter, _side, _side);
+      canvas.DrawRectangle(pen, CordPoint.XStart, CordPoint.YStart, _side, _side);
+      canvas.FillRectangle(brush, CordPoint.XStart, CordPoint.YStart, _side, _side);
     }
 
-    public void MoveTo(Graphics canvas, float changeX, float changeY)
+    public void MoveTo(Graphics canvas, float changeX, float changeY, int BoxSizeX, int BoxSizeY)
     {
-            if (_xCenter + _side + changeX < 877 && _xCenter + changeX > 0)
+            if (CordPoint.XStart + _side + changeX < BoxSizeX && CordPoint.XStart + changeX > 3)
             {
-                XCenter+=changeX;
+                CordPoint.ChangeX(changeX);
             }
-            if (_yCenter + _side + changeY < 500 && _yCenter + changeY > 0)
+            if (CordPoint.YStart + _side + changeY < BoxSizeY && CordPoint.YStart + changeY > 3)
             {
-                YCenter+=changeY;
+                CordPoint.ChangeY(changeY);
             }
 
             Show(canvas);
     }
 
-    public void ResizeSquare(Graphics canvas, float SizeChange)
+    public void ResizeSquare(Graphics canvas, float SizeChange, int BoxSizeX, int BoxSizeY)
     {
-        if (SizeChange > 0 && SizeChange < _side || _xCenter + SizeChange <= 877 && _yCenter + SizeChange <= 500)
+        if (SizeChange > 0 && SizeChange < _side || CordPoint.XStart + SizeChange <= BoxSizeX && CordPoint.YStart + SizeChange <= BoxSizeY)
         {
             _side = SizeChange;
         }

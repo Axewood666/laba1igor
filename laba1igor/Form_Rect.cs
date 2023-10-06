@@ -200,6 +200,7 @@ namespace laba1igor
         private void RectDispose(int iter)
         {
             _rectangles[iter] = null;
+            _points[iter] = null;
         }
         private void PictureBoxUpd()
         {

@@ -7,8 +7,8 @@ namespace laba1igor.My_Classes
 {
     internal class MyRectangle
   {
-    private float _xStart;
-    private float _yStart;
+    //private float _xStart;
+    //private float _yStart;
 
     private int _xSize;
     private int _ySize;
@@ -40,17 +40,17 @@ namespace laba1igor.My_Classes
       }
     }
 
-    public float XStart
-    {
-      get => _xStart;
-      set => _xStart = value;
-    }
+    //public float XStart
+    //{
+    //  get => _xStart;
+    //  set => _xStart = value;
+    //}
 
-    public float YStart
-    {
-      get => _yStart;
-      set => _yStart = value;
-    }
+    //public float YStart
+    //{
+    //  get => _yStart;
+    //  set => _yStart = value;
+    //}
     public MyPoint CordPoint 
         { get; set; }
 
@@ -85,7 +85,7 @@ namespace laba1igor.My_Classes
 
     public void ResizeRectangle(Graphics canvas, float xNewSize, float yNewSize, int BoxSizeX, int BoxSizeY) 
     {
-            if (xNewSize > 0 && yNewSize > 0 && ((xNewSize < XSize && yNewSize < YSize) || _xStart + xNewSize <= BoxSizeX && _yStart + yNewSize <= BoxSizeY))
+            if (xNewSize > 0 && yNewSize > 0 && ((xNewSize < XSize && yNewSize < YSize) || CordPoint.XStart + xNewSize <= BoxSizeX && CordPoint.YStart + yNewSize <= BoxSizeY))
             {
                 XSize = (int)xNewSize;
                 YSize = (int)yNewSize;
