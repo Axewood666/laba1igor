@@ -30,7 +30,6 @@ namespace laba1igor
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label6.Text = "";
             if (_iter == _circles.Length)
             {
                 Array.Resize(ref _circles, _iter + 1);
@@ -48,13 +47,17 @@ namespace laba1igor
                     _circles[_iter].Show(g);
                     _iter++;
                 }
+                else
+                {
+                    MessageBox.Show("Проверьте введеные данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
+                }
             }
            PictureBoxUpd();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            label6.Text = "";
             var iterStr = textBox5.Text;
             if (iterStr == "")
             {
@@ -65,11 +68,13 @@ namespace laba1igor
                 }
                 _iter = 0;
                 g.Clear(Color.WhiteSmoke);
+                MessageBox.Show("Все круги будут очищены!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && iterator < _circles.Length  && _circles[iterator] != null)
+                if (checkIter && 0 <= iterator && iterator < _circles.Length  && _circles[iterator] != null)
                 {   
                     CircleDispose(iterator);
                     g.Clear(Color.WhiteSmoke);
@@ -80,7 +85,8 @@ namespace laba1igor
                 }
                 else
                 {
-                    label6.Text = "Круга с таким номером нет!";
+                    MessageBox.Show("Круга с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
                 }
             }
 
@@ -88,7 +94,6 @@ namespace laba1igor
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            label6.Text = "";
             var first = float.TryParse(textBox4.Text, out var newRadius);
             var iterStr = textBox5.Text;
             if (iterStr == "")
@@ -99,7 +104,7 @@ namespace laba1igor
                     if (_circles[i] != null)
                     {
                         newRadius = rand.Next(25, 150);
-                        _circles[i].ResizeCircle(g, newRadius, X_size, Y_size);
+                        _circles[i].ResizeCircle(g, newRadius, X_size, Y_size, true);
                     }
                 }
             }
@@ -112,7 +117,7 @@ namespace laba1igor
                     {
                         g.Clear(Color.WhiteSmoke);
 
-                        _circles[iterator].ResizeCircle(g, newRadius, X_size, Y_size);
+                        _circles[iterator].ResizeCircle(g, newRadius, X_size, Y_size, false);
                         for (var i = 0; i < _iter; i++)
                         {
                             if (i == iterator) continue;
@@ -121,12 +126,14 @@ namespace laba1igor
                     }
                     else
                     {
-                        label6.Text = "Круга с таким номером нет!";
+                        MessageBox.Show("Круга с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    label6.Text = "Неверно введен радиус!";
+                    MessageBox.Show("Неверно введены данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
                 }
             }
 
@@ -134,7 +141,6 @@ namespace laba1igor
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            label6.Text = "";
             var first = float.TryParse(textBox6.Text, out var newX);
             var second = float.TryParse(textBox7.Text, out var newY);
             var iterStr = textBox5.Text;
@@ -156,7 +162,7 @@ namespace laba1igor
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
                 if (first && second && checkIter)
                 {
-                    if (iterator < _circles.Length && _circles[iterator] != null)
+                    if (0 <= iterator && iterator < _circles.Length && _circles[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 
@@ -175,19 +181,20 @@ namespace laba1igor
                     }
                     else
                     {
-                        label6.Text = "Круга с таким номером нет!";
+                        MessageBox.Show("Круга с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    label6.Text = "Неверно введены координаты!";
+                    MessageBox.Show("Неверно введены данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
                 }
             }
             PictureBoxUpd();
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            label6.Text = "";
             RandomArray();
         }
         private void CircleDispose(int iter)

@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
@@ -67,7 +69,7 @@ namespace laba1igor.My_Classes
         {
             CordPoint.ChangeX(newX);
         }
-        if (CordPoint.YStart + _radius + newY < BoxSizeY && CordPoint.YStart - _radius + newY > 0)
+        if (CordPoint.YStart + _radius + newY < BoxSizeY && CordPoint.YStart - _radius + newY > 3)
         {
             CordPoint.ChangeY(newY);
         }
@@ -75,11 +77,16 @@ namespace laba1igor.My_Classes
             Show(canvas);
     }
 
-    public void ResizeCircle(Graphics canvas, float sizeChange, int BoxSizeX, int BoxSizeY)
+    public void ResizeCircle(Graphics canvas, float sizeChange, int BoxSizeX, int BoxSizeY, bool Random)
     {
-            if (sizeChange > 0 && sizeChange < _radius || CordPoint.XStart + sizeChange <= BoxSizeX && CordPoint.YStart + sizeChange <= BoxSizeY && CordPoint.XStart - sizeChange >= 3 && CordPoint.YStart - sizeChange >= 3)
+            if (sizeChange > 0 && (sizeChange < _radius || CordPoint.XStart + sizeChange <= BoxSizeX && CordPoint.YStart + sizeChange <= BoxSizeY && CordPoint.XStart - sizeChange >= 3 && CordPoint.YStart - sizeChange >= 3))
             {
                 _radius = sizeChange;
+            }
+            else if (!Random)
+            {
+                MessageBox.Show("Неверно введен радиус", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
             }
       Show(canvas);
     }

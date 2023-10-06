@@ -49,7 +49,8 @@ namespace laba1igor
                 }
                 else
                 {
-                    label6.Text = "Неверно введены данные";
+                    MessageBox.Show("Проверьте введеные данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
                 }
             }
             PictureBoxUpd();
