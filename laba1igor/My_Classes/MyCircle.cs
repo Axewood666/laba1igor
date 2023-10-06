@@ -2,36 +2,37 @@
 
 namespace laba1igor.My_Classes
 {
-    public class MyCircle
+    internal class MyCircle
   {
-    private float _xCenter;
-    private float _yCenter;
+    //private float _xCenter;
+    //private float _yCenter;
     private float _radius;
 
-    public float XCenter
-    {
-      get => _xCenter;
-      set
-      {
-        if (value >= 0)
-        {
-          _xCenter = value;
-        }
-      }
-    }
+        //public float XCenter
+        //{
+        //  get => _xCenter;
+        //  set
+        //  {
+        //    if (value >= 0)
+        //    {
+        //      _xCenter = value;
+        //    }
+        //  }
+        //}
 
-    public float YCenter
-    {
-      get => _yCenter;
-      set
-      {
-        if (value >= 0)
-        {
-          _yCenter = value;
-        }
-      }
-    }
-
+        //public float YCenter
+        //{
+        //  get => _yCenter;
+        //  set
+        //  {
+        //    if (value >= 0)
+        //    {
+        //      _yCenter = value;
+        //    }
+        //  }
+        //}
+    public MyPoint CordPoint
+    { get; set; }
     public float Radius
     {
       get => _radius;
@@ -44,10 +45,9 @@ namespace laba1igor.My_Classes
       }
     }
 
-    public MyCircle(float coordXCenter, float coordYCenter, float radiusValue)
+    public MyCircle(MyPoint Cords, float radiusValue)
     {
-      XCenter = coordXCenter;
-      YCenter = coordYCenter;
+      CordPoint = Cords;
       Radius = radiusValue;
     }
 
@@ -55,29 +55,29 @@ namespace laba1igor.My_Classes
     {
       var pen = new Pen(Color.Black, 6);
       var brush = new SolidBrush(Color.DarkRed);
-      var centerXDraw = _xCenter - _radius;
-      var centerYDraw = _yCenter - _radius;
+      var centerXDraw = CordPoint.XStart - _radius;
+      var centerYDraw = CordPoint.YStart - _radius;
       canvas.DrawEllipse(pen, centerXDraw, centerYDraw, Radius * 2, Radius * 2);
       canvas.FillEllipse(brush, centerXDraw, centerYDraw, Radius * 2, Radius * 2);
     }
 
-    public void MoveTo(Graphics canvas, float newX, float newY)
+    public void MoveTo(Graphics canvas, float newX, float newY, int BoxSizeX, int BoxSizeY)
     {
-        if (_xCenter + _radius + newX < 877 && _xCenter - _radius + newX > 0)
+        if (CordPoint.XStart + _radius + newX < BoxSizeX && CordPoint.XStart - _radius + newX > 3)
         {
-            XCenter += newX;
+            CordPoint.ChangeX(newX);
         }
-        if (_yCenter + _radius + newY < 500 && _yCenter - _radius + newY > 0)
+        if (CordPoint.YStart + _radius + newY < BoxSizeY && CordPoint.YStart - _radius + newY > 0)
         {
-            YCenter += newY;
+            CordPoint.ChangeY(newY);
         }
 
             Show(canvas);
     }
 
-    public void ResizeCircle(Graphics canvas, float sizeChange)
+    public void ResizeCircle(Graphics canvas, float sizeChange, int BoxSizeX, int BoxSizeY)
     {
-            if (sizeChange > 0 && sizeChange < _radius || _xCenter + sizeChange <= 877 && _yCenter + sizeChange <= 500 && _xCenter - sizeChange >= 0 && _yCenter - sizeChange >= 0)
+            if (sizeChange > 0 && sizeChange < _radius || CordPoint.XStart + sizeChange <= BoxSizeX && CordPoint.YStart + sizeChange <= BoxSizeY && CordPoint.XStart - sizeChange >= 3 && CordPoint.YStart - sizeChange >= 3)
             {
                 _radius = sizeChange;
             }

@@ -10,6 +10,7 @@ namespace laba1igor
     public partial class Form_Line : Form
     {
         private MyEllipse[] _elipse;
+        private MyPoint[] _points;
         private int _iter = 0;
         private int X_size;
         private int Y_size;
@@ -17,12 +18,13 @@ namespace laba1igor
         public Form_Line()
         {
             InitializeComponent();
-            X_size = pictureBox1.Width;
-            Y_size = pictureBox1.Height;
+            X_size = pictureBox1.Width - 3;
+            Y_size = pictureBox1.Height - 3;
             buf = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             g = Graphics.FromImage(buf);
             g.Clear(Color.WhiteSmoke);
             _elipse = new MyEllipse[5];
+            _points = new MyPoint[5];
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,6 +33,7 @@ namespace laba1igor
             if (_iter == _elipse.Length)
             {
                 Array.Resize(ref _elipse, _iter + 1);
+                Array.Resize(ref _points, _iter + 1);
             }
             var x_cord = float.TryParse(textBox1.Text, out var x1);
             var y_cord = float.TryParse(textBox2.Text, out var y1);
@@ -38,9 +41,10 @@ namespace laba1igor
             var Width = int.TryParse(textBox4.Text, out var W);
             if (x_cord && y_cord && Height && Width)
             {
-                if (x1 - W/2 >= 0 && x1 + W/2 <= X_size && y1 - H/2 >= 0 && y1 + H/2 <= Y_size)
+                if (x1 - W/2 >= 3 && x1 + W/2 <= X_size && y1 - H/2 >= 3 && y1 + H/2 <= Y_size)
                 {
-                    _elipse[_iter] = new MyEllipse(x1, y1, W, H);
+                    _points[_iter] = new MyPoint(x1, y1);
+                    _elipse[_iter] = new MyEllipse(_points[_iter], W, H);
                     _elipse[_iter].Show(g);
                     _iter++;
                 }
@@ -58,6 +62,7 @@ namespace laba1igor
                 for (var i = _iter - 1; i >= 0; i--)
                 {
                     _elipse[i] = null;
+                    _points[i] = null;
                 }
                 _iter = 0;
                 g.Clear(Color.WhiteSmoke);
@@ -100,7 +105,7 @@ namespace laba1igor
                     {
                         int rNewH = rand.Next(20, 80);
                         int rNewW = rand.Next(20, 80);
-                        _elipse[i].ResizeEllipse(g, rNewW, rNewH);
+                        _elipse[i].ResizeEllipse(g, rNewW, rNewH, X_size, Y_size);
                     }
                 }
             }
@@ -113,7 +118,7 @@ namespace laba1igor
                     {
                         g.Clear(Color.WhiteSmoke);
 
-                        if (_elipse[iterator] != null) _elipse[iterator].ResizeEllipse(g, nW, nH);
+                        if (_elipse[iterator] != null) _elipse[iterator].ResizeEllipse(g, nW, nH, X_size, Y_size);
                         else label6.Text = "Линии с таким номером нет!";
                         for (var i = 0; i < _iter; i++)
                         {
@@ -149,7 +154,7 @@ namespace laba1igor
                     {
                         newX = rand.Next(-50, 50);
                         newY = rand.Next(-50, 50);
-                        _elipse[i].MoveTo(g, newX, newY);
+                        _elipse[i].MoveTo(g, newX, newY, X_size, Y_size);
                     }
                 }
             }
@@ -167,7 +172,7 @@ namespace laba1igor
                         {
                             if (i == iterator)
                             {
-                                _elipse[i].MoveTo(g, newX, newY);
+                                _elipse[i].MoveTo(g, newX, newY, X_size, Y_size);
                             }
                             else
                             {
@@ -195,6 +200,7 @@ namespace laba1igor
         private void EllipseDispose(int iter)
         {
             _elipse[iter] = null;
+            _points[iter] = null;
         }
         private void PictureBoxUpd()
         {
@@ -204,16 +210,19 @@ namespace laba1igor
         private void RandomArray()
         {
             _elipse = null;
+            _points = null;
             g.Clear(Color.WhiteSmoke);
             var randIter = rand.Next(1, 10);
             _elipse = new MyEllipse[randIter];
+            _points = new MyPoint[randIter];
             _iter = randIter;
 
 
             for (var i = 0; i < _iter; i++)
             {
-                _elipse[i] = new MyEllipse(rand.Next(60, 770),
-                                           rand.Next(60, 390),
+                _points[i] = new MyPoint(rand.Next(60, 770),
+                                           rand.Next(60, 390));
+                _elipse[i] = new MyEllipse(_points[i],
                                             rand.Next(20, 120),
                                             rand.Next(20, 120));
                 _elipse[i].Show(g);

@@ -3,10 +3,10 @@ using System.Drawing;
 
 namespace laba1igor.My_Classes
 {
-    public class MyEllipse
+    internal class MyEllipse
   {
-        private float _xStart;
-        private float _yStart;
+        //private float _xStart;
+        //private float _yStart;
 
         private int _xSize;
         private int _ySize;
@@ -38,25 +38,26 @@ namespace laba1igor.My_Classes
             }
         }
 
-        public float XStart
-        {
-            get => _xStart;
-            set => _xStart = value;
-        }
+        //public float XStart
+        //{
+        //    get => _xStart;
+        //    set => _xStart = value;
+        //}
 
-        public float YStart
-        {
-            get => _yStart;
-            set => _yStart = value;
-        }
+        //public float YStart
+        //{
+        //    get => _yStart;
+        //    set => _yStart = value;
+        //}
+        public MyPoint CordPoint
+        { get; set; }
 
-        public MyEllipse(float coordXStart, float coordYStart,
+        public MyEllipse(MyPoint Cords,
           int xSizeInit, int ySizeInit)
         {
             if (xSizeInit > 0 && ySizeInit > 0)
             {
-                XStart = coordXStart;
-                YStart = coordYStart;
+                CordPoint = Cords;
 
                 XSize = xSizeInit;
                 YSize = ySizeInit;
@@ -65,28 +66,28 @@ namespace laba1igor.My_Classes
 
         public void Show(Graphics canvas)
         {
-            var centerXDraw = XStart - XSize / 2F;
-            var centerYDraw = YStart - YSize / 2F;
+            var centerXDraw = CordPoint.XStart - XSize / 2F;
+            var centerYDraw = CordPoint.YStart - YSize / 2F;
             canvas.DrawEllipse(pen, centerXDraw, centerYDraw, XSize, YSize);
             canvas.FillEllipse(brush, centerXDraw, centerYDraw, XSize, YSize);
         }
 
-        public void MoveTo(Graphics canvas, float newX, float newY)
+        public void MoveTo(Graphics canvas, float newX, float newY, int BoxSizeX, int BoxSizeY)
         {
-            if (_xStart + _xSize/2 + newX <= 877 && _xStart - XSize/2 + newX >= 0)
+            if (CordPoint.XStart + _xSize/2 + newX <= BoxSizeX && CordPoint.XStart - XSize/2 + newX >= 3)
             {
-                XStart += newX;
+                CordPoint.ChangeX(newX);
             }
-            if (_yStart + _ySize/2 + newY < 500 && _yStart - YSize/2 + newY >= 0)
+            if (CordPoint.YStart + _ySize/2 + newY < BoxSizeY && CordPoint.YStart - YSize/2 + newY >= 3)
             {
-                YStart += newY;
+                CordPoint.ChangeY(newY);
             }
             Show(canvas);
         }
 
-        public void ResizeEllipse(Graphics canvas, float xNewSize, float yNewSize)
+        public void ResizeEllipse(Graphics canvas, float xNewSize, float yNewSize, int BoxSizeX, int BoxSizeY)
         {
-            if (xNewSize > 0 && yNewSize > 0 && ((xNewSize < XSize && yNewSize < YSize) || _xStart + xNewSize / 2 <= 877 && _yStart + yNewSize / 2 <= 500 && _xStart - xNewSize / 2 >= 0 && _yStart - yNewSize / 2 >= 0))
+            if (xNewSize > 0 && yNewSize > 0 && ((xNewSize < XSize && yNewSize < YSize) || CordPoint.XStart + xNewSize / 2 <= BoxSizeX && CordPoint.YStart + yNewSize / 2 <= BoxSizeY && CordPoint.XStart - xNewSize / 2 >= 3 && CordPoint.YStart - yNewSize / 2 >= 3))
             {
                 XSize = (int)xNewSize;
                 YSize = (int)yNewSize;

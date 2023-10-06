@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection.Emit;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace laba1igor
@@ -10,6 +11,7 @@ namespace laba1igor
     public partial class Form_Circle : Form
     {
         private MyCircle[] _circles;
+        private MyPoint[] _points;
         private int _iter = 0;
         private int X_size;
         private int Y_size;
@@ -20,9 +22,10 @@ namespace laba1igor
             buf = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             g = Graphics.FromImage(buf);
             g.Clear(Color.WhiteSmoke);
-            X_size = pictureBox1.Width;
-            Y_size = pictureBox1.Height;
+            X_size = pictureBox1.Width - 3;
+            Y_size = pictureBox1.Height - 3;
             _circles = new MyCircle[5];
+            _points = new MyPoint[5];
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,15 +34,17 @@ namespace laba1igor
             if (_iter == _circles.Length)
             {
                 Array.Resize(ref _circles, _iter + 1);
+                Array.Resize(ref _points, _iter + 1);
             }
             var x_cord = float.TryParse(textBox1.Text, out var x1);
             var y_cord = float.TryParse(textBox2.Text, out var y1);
             var R = float.TryParse(textBox3.Text, out var radius);
             if (x_cord && y_cord && R)
             {
-                if (x1-radius >= 0 && x1 + radius <= X_size && y1-radius >= 0 && y1 + radius <= Y_size && radius > 0)
+                if (x1-radius >= 3 && x1 + radius <= X_size && y1-radius >= 3 && y1 + radius <= Y_size && radius > 0)
                 {
-                    _circles[_iter] = new MyCircle(x1, y1, radius);
+                    _points[_iter] = new MyPoint(x1, y1);
+                    _circles[_iter] = new MyCircle(_points[_iter], radius);
                     _circles[_iter].Show(g);
                     _iter++;
                 }
@@ -56,6 +61,7 @@ namespace laba1igor
                 for (var i = _iter - 1; i >= 0; i--)
                 {
                     _circles[i] = null;
+                    _points[i] = null;
                 }
                 _iter = 0;
                 g.Clear(Color.WhiteSmoke);
@@ -93,7 +99,7 @@ namespace laba1igor
                     if (_circles[i] != null)
                     {
                         newRadius = rand.Next(25, 150);
-                        _circles[i].ResizeCircle(g, newRadius);
+                        _circles[i].ResizeCircle(g, newRadius, X_size, Y_size);
                     }
                 }
             }
@@ -106,7 +112,7 @@ namespace laba1igor
                     {
                         g.Clear(Color.WhiteSmoke);
 
-                        _circles[iterator].ResizeCircle(g, newRadius);
+                        _circles[iterator].ResizeCircle(g, newRadius, X_size, Y_size);
                         for (var i = 0; i < _iter; i++)
                         {
                             if (i == iterator) continue;
@@ -141,7 +147,7 @@ namespace laba1igor
                     {
                         newX = rand.Next(-50, 50);
                         newY = rand.Next(-50, 50);
-                        _circles[i].MoveTo(g, newX, newY);
+                        _circles[i].MoveTo(g, newX, newY, X_size, Y_size);
                     }
                 }
             }
@@ -159,7 +165,7 @@ namespace laba1igor
                         {
                             if (i == iterator)
                             {
-                                _circles[i].MoveTo(g, newX, newY);
+                                _circles[i].MoveTo(g, newX, newY, X_size, Y_size);
                             }
                             else
                             {
@@ -187,6 +193,7 @@ namespace laba1igor
         private void CircleDispose(int iter)
         {
             _circles[iter] = null;
+            _points[iter] = null;
         }
         private void PictureBoxUpd()
         {
@@ -196,16 +203,20 @@ namespace laba1igor
         private void RandomArray()
         {
             _circles = null;
+            _points = null;
             g.Clear(Color.WhiteSmoke);
             var randIter = rand.Next(1, 10);
             _circles = new MyCircle[randIter];
+            _points = new MyPoint[randIter];
             _iter = randIter;
 
 
             for (var i = 0; i < _iter; i++)
             {
-                _circles[i] = new MyCircle(rand.Next(100, 750),
-                                           rand.Next(100, 400),
+                _points[i] = new MyPoint(rand.Next(100, 750),
+                                           rand.Next(100, 400));
+
+                _circles[i] = new MyCircle(_points[i],
                                             rand.Next(25, 100));
                 _circles[i].Show(g);
             }
