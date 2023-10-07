@@ -38,9 +38,9 @@ namespace laba1igor
             var x_cord = float.TryParse(textBox1.Text, out var x1);
             var y_cord = float.TryParse(textBox2.Text, out var y1);
             var R = float.TryParse(textBox3.Text, out var radius);
-            if (x_cord && y_cord && R)
+            if (x_cord && y_cord && R && radius > 0)
             {
-                if (x1-radius >= 3 && x1 + radius <= X_size && y1-radius >= 3 && y1 + radius <= Y_size && radius > 0)
+                if (x1-radius >= 3 && x1 + radius <= X_size && y1-radius >= 3 && y1 + radius <= Y_size)
                 {
                     _points[_iter] = new MyPoint(x1, y1);
                     _circles[_iter] = new MyCircle(_points[_iter], radius);
@@ -49,9 +49,14 @@ namespace laba1igor
                 }
                 else
                 {
-                    MessageBox.Show("Проверьте введеные данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Выход за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Неверно введены данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
             }
            PictureBoxUpd();
         }
@@ -111,9 +116,9 @@ namespace laba1igor
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (first)
+                if (first && newRadius > 0)
                 {
-                    if (checkIter && iterator > 0 &&  iterator < _iter && iterator < _circles.Length && _circles[iterator] != null)
+                    if (checkIter && iterator >= 0 &&  iterator < _iter && iterator < _circles.Length && _circles[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 

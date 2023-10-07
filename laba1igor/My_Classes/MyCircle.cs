@@ -91,13 +91,13 @@ namespace laba1igor.My_Classes
 
     public void ResizeCircle(Graphics canvas, float sizeChange, int BoxSizeX, int BoxSizeY, bool Random)
     {
-            if (sizeChange > 0 && (sizeChange < _radius || CordPoint.XStart + sizeChange <= BoxSizeX && CordPoint.YStart + sizeChange <= BoxSizeY && CordPoint.XStart - sizeChange >= 3 && CordPoint.YStart - sizeChange >= 3))
+            if (sizeChange < _radius || CordPoint.XStart + sizeChange <= BoxSizeX && CordPoint.YStart + sizeChange <= BoxSizeY && CordPoint.XStart - sizeChange >= 3 && CordPoint.YStart - sizeChange >= 3)
             {
                 _radius = sizeChange;
             }
             else if (!Random)
             {
-                MessageBox.Show("Неверно введен радиус", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBox.Show("Радиус выходит за границы", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button1);
             }
       Show(canvas);

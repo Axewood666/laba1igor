@@ -38,9 +38,9 @@ namespace laba1igor
             var x_cord = float.TryParse(textBox1.Text, out var x1);
             var y_cord = float.TryParse(textBox2.Text, out var y1);
             var Side = int.TryParse(textBox4.Text, out var S);
-            if (x_cord && y_cord && Side)
+            if (x_cord && y_cord && Side && S > 0)
             {
-                if (x1 >= 3 && x1 + S <= X_size && y1 >= 3 && y1 + S <= Y_size && S > 3)
+                if (x1 >= 3 && x1 + S <= X_size && y1 >= 3 && y1 + S <= Y_size)
                 {
                 _points[_iter] = new MyPoint(x1, y1);
                 _squares[_iter] = new MySquare(_points[_iter], S);
@@ -49,9 +49,14 @@ namespace laba1igor
                 }
                 else
                 {
-                    MessageBox.Show("Проверьте введеные данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Выход за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Неверно введены данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
             }
             PictureBoxUpd();
         }
@@ -75,7 +80,7 @@ namespace laba1igor
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && iterator > 0 && iterator < _squares.Length && _squares[iterator] != null)
+                if (checkIter && iterator >= 0 && iterator < _squares.Length && _squares[iterator] != null)
                 {
                     RectDispose(iterator);
                     g.Clear(Color.WhiteSmoke);
@@ -113,9 +118,9 @@ namespace laba1igor
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (Size)
+                if (Size && S > 0)
                 {
-                    if (checkIter && iterator > 0 && iterator < _iter && _squares[iterator] != null)
+                    if (checkIter && iterator >= 0 && iterator < _iter && _squares[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 
@@ -165,7 +170,7 @@ namespace laba1igor
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
                 if (x && y)
                 {
-                    if (checkIter && iterator > 0 && iterator < _squares.Length &&  _squares[iterator] != null)
+                    if (checkIter && iterator >= 0 && iterator < _squares.Length &&  _squares[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 

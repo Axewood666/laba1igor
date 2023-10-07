@@ -39,7 +39,7 @@ namespace laba1igor
             var y_cord = float.TryParse(textBox2.Text, out var y1);
             var Height = int.TryParse(textBox3.Text, out var H);
             var Width = int.TryParse(textBox4.Text, out var W);
-            if (x_cord && y_cord && Height && Width)
+            if (x_cord && y_cord && Height && Width && H > 0 && W > 0)
             {
                 if (x1 - W/2 >= 3 && x1 + W/2 <= X_size && y1 - H/2 >= 3 && y1 + H/2 <= Y_size)
                 {
@@ -50,12 +50,16 @@ namespace laba1igor
                 }
                 else
                 {
-                    MessageBox.Show("Проверьте введеные данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Выход за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
-
             }
-           PictureBoxUpd();
+            else
+            {
+                MessageBox.Show("Неверно введены данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+            }
+            PictureBoxUpd();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -77,7 +81,7 @@ namespace laba1igor
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && iterator > 0 && iterator < _elipse.Length && _elipse[iterator] != null)
+                if (checkIter && iterator >= 0 && iterator < _elipse.Length && _elipse[iterator] != null)
                 {
                     EllipseDispose(iterator);
                     g.Clear(Color.WhiteSmoke);
@@ -120,9 +124,9 @@ namespace laba1igor
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (nHeight && nWidth)
+                if (nHeight && nWidth && nH > 0 && nW > 0)
                 {
-                    if (checkIter && iterator > 0 && iterator < _iter && _elipse[iterator] != null)
+                    if (checkIter && iterator >= 0 && iterator < _iter && _elipse[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 
@@ -172,7 +176,7 @@ namespace laba1igor
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
                 if (x && y)
                 {
-                    if (checkIter && iterator > 0 && iterator < _elipse.Length && _elipse[iterator] != null)
+                    if (checkIter && iterator >= 0 && iterator < _elipse.Length && _elipse[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 

@@ -100,14 +100,15 @@ namespace laba1igor.My_Classes
 
         public void ResizeEllipse(Graphics canvas, float xNewSize, float yNewSize, int BoxSizeX, int BoxSizeY, bool random)
         {
-            if (xNewSize > 0 && yNewSize > 0 && ((xNewSize < XSize && yNewSize < YSize) || CordPoint.XStart + xNewSize / 2 <= BoxSizeX && CordPoint.YStart + yNewSize / 2 <= BoxSizeY && CordPoint.XStart - xNewSize / 2 >= 3 && CordPoint.YStart - yNewSize / 2 >= 3))
+            if ((xNewSize < XSize && yNewSize < YSize) || CordPoint.XStart + xNewSize / 2 <= BoxSizeX && CordPoint.YStart + yNewSize / 2 <= BoxSizeY && 
+                CordPoint.XStart - xNewSize / 2 >= 3 && CordPoint.YStart - yNewSize / 2 >= 3)
             {
                 XSize = (int)xNewSize;
                 YSize = (int)yNewSize;
             }
             else if (!random)
             {
-                MessageBox.Show("Неверно введен размер", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBox.Show("Размер выходит за границы", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button1);
             }
             Show(canvas);

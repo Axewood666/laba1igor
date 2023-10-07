@@ -71,13 +71,13 @@ namespace laba1igor.My_Classes
 
     public void ResizeSquare(Graphics canvas, float SizeChange, int BoxSizeX, int BoxSizeY, bool random)
     {
-        if (SizeChange > 0 && SizeChange < _side || CordPoint.XStart + SizeChange <= BoxSizeX && CordPoint.YStart + SizeChange <= BoxSizeY)
+        if (SizeChange < _side || CordPoint.XStart + SizeChange <= BoxSizeX && CordPoint.YStart + SizeChange <= BoxSizeY)
         {
             _side = SizeChange;
         }
         else if (!random)
             {
-                MessageBox.Show("Неверно введен размер!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBox.Show("Размер выходит за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button1);
             }
         Show(canvas);
