@@ -69,11 +69,13 @@ namespace laba1igor
                 }
                 _iter = 0;
                 g.Clear(Color.WhiteSmoke);
+                MessageBox.Show("Все квадраты будут очищены!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && iterator < _squares.Length && _squares[iterator] != null)
+                if (checkIter && iterator > 0 && iterator < _squares.Length && _squares[iterator] != null)
                 {
                     RectDispose(iterator);
                     g.Clear(Color.WhiteSmoke);
@@ -84,7 +86,8 @@ namespace laba1igor
                 }
                 else
                 {
-                    label6.Text = "прямоугольника с таким номером нет!";
+                    MessageBox.Show("Квадрата с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
                 }
             }
 
@@ -103,20 +106,20 @@ namespace laba1igor
                     if (_squares[i] != null)
                     {
                         float RandSize = rand.Next(25, 150);
-                        _squares[i].ResizeSquare(g, RandSize, X_size, Y_size);
+                        _squares[i].ResizeSquare(g, RandSize, X_size, Y_size, true);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (Size && checkIter && _squares.Length > iterator && _squares[iterator] != null)
+                if (Size)
                 {
-                    if (iterator < _iter)
+                    if (checkIter && iterator > 0 && iterator < _iter && _squares[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 
-                        _squares[iterator].ResizeSquare(g, S, X_size, Y_size);
+                        _squares[iterator].ResizeSquare(g, S, X_size, Y_size, false);
                         for (var i = 0; i < _iter; i++)
                         {
                             if (i == iterator) continue;
@@ -125,12 +128,14 @@ namespace laba1igor
                     }
                     else
                     {
-                        label6.Text = "Прямоугольника с таким номером нет!";
+                        MessageBox.Show("Квадрата с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    label6.Text = "Неверно введены данные!";
+                    MessageBox.Show("Неверно введен размер!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
                 }
             }
 
@@ -151,16 +156,16 @@ namespace laba1igor
                     {
                         newX = rand.Next(-50, 50);
                         newY = rand.Next(-50, 50);
-                        _squares[i].MoveTo(g, newX, newY, X_size, Y_size);
+                        _squares[i].MoveTo(g, newX, newY, X_size, Y_size, true);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (x && y && checkIter && iterator < _squares.Length && _squares[iterator] != null)
+                if (x && y)
                 {
-                    if (_squares[iterator] != null)
+                    if (checkIter && iterator > 0 && iterator < _squares.Length &&  _squares[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 
@@ -169,7 +174,7 @@ namespace laba1igor
                         {
                             if (i == iterator)
                             {
-                                _squares[i].MoveTo(g, newX, newY, X_size, Y_size);
+                                _squares[i].MoveTo(g, newX, newY, X_size, Y_size, false);
                             }
                             else
                             {
@@ -179,12 +184,14 @@ namespace laba1igor
                     }
                     else
                     {
-                        label6.Text = "Прямоугольника с таким номером нет!";
+                        MessageBox.Show("Квадрата с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    label6.Text = "Неверно введены координаты!";
+                    MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
                 }
             }
             PictureBoxUpd();

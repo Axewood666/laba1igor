@@ -51,7 +51,9 @@ namespace laba1igor.My_Classes
     {
       CordPoint = Cords;
       Radius = radiusValue;
-    }
+      MessageBox.Show($"Круг с центром в точке [{CordPoint.XStart}, {CordPoint.YStart}], c радиусом {Radius} создан!", "Уведомление!",
+      MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+        }
 
     public void Show(Graphics canvas)
     {
@@ -63,16 +65,26 @@ namespace laba1igor.My_Classes
       canvas.FillEllipse(brush, centerXDraw, centerYDraw, Radius * 2, Radius * 2);
     }
 
-    public void MoveTo(Graphics canvas, float newX, float newY, int BoxSizeX, int BoxSizeY)
+    public void MoveTo(Graphics canvas, float newX, float newY, int BoxSizeX, int BoxSizeY, bool random)
     {
         if (CordPoint.XStart + _radius + newX < BoxSizeX && CordPoint.XStart - _radius + newX > 3)
-        {
-            CordPoint.ChangeX(newX);
-        }
+            {
+                CordPoint.ChangeX(newX);
+            }
+            else if (!random)
+            {
+                MessageBox.Show("Перемещение по x невозможно!", "Выход за границы!",
+                MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            }
         if (CordPoint.YStart + _radius + newY < BoxSizeY && CordPoint.YStart - _radius + newY > 3)
-        {
-            CordPoint.ChangeY(newY);
-        }
+            {
+                CordPoint.ChangeY(newY);
+            }
+            else if (!random)
+            {
+                MessageBox.Show("Перемещение по y невозможно!", "Выход за границы!",
+                MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+            }
 
             Show(canvas);
     }

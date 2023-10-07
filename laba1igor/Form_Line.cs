@@ -48,7 +48,12 @@ namespace laba1igor
                     _elipse[_iter].Show(g);
                     _iter++;
                 }
-                
+                else
+                {
+                    MessageBox.Show("Проверьте введеные данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
+                }
+
             }
            PictureBoxUpd();
         }
@@ -66,11 +71,13 @@ namespace laba1igor
                 }
                 _iter = 0;
                 g.Clear(Color.WhiteSmoke);
+                MessageBox.Show("Все эллипсы будут очищены!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && iterator < _elipse.Length && _elipse[iterator] != null)
+                if (checkIter && iterator > 0 && iterator < _elipse.Length && _elipse[iterator] != null)
                 {
                     EllipseDispose(iterator);
                     g.Clear(Color.WhiteSmoke);
@@ -84,7 +91,8 @@ namespace laba1igor
                 }
                 else
                 {
-                    label6.Text = "Линии с таким номером нет!";
+                    MessageBox.Show("Эллипса с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
                 }
             }
 
@@ -105,21 +113,20 @@ namespace laba1igor
                     {
                         int rNewH = rand.Next(20, 80);
                         int rNewW = rand.Next(20, 80);
-                        _elipse[i].ResizeEllipse(g, rNewW, rNewH, X_size, Y_size);
+                        _elipse[i].ResizeEllipse(g, rNewW, rNewH, X_size, Y_size, true);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && nHeight && nWidth)
+                if (nHeight && nWidth)
                 {
-                    if (iterator < _iter)
+                    if (checkIter && iterator > 0 && iterator < _iter && _elipse[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 
-                        if (_elipse[iterator] != null) _elipse[iterator].ResizeEllipse(g, nW, nH, X_size, Y_size);
-                        else label6.Text = "Линии с таким номером нет!";
+                        _elipse[iterator].ResizeEllipse(g, nW, nH, X_size, Y_size, false);
                         for (var i = 0; i < _iter; i++)
                         {
                             if (i == iterator) continue;
@@ -128,12 +135,14 @@ namespace laba1igor
                     }
                     else
                     {
-                        label6.Text = "Линии с таким номером нет!";
+                        MessageBox.Show("Эллипса с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    label6.Text = "Неверно введен угол!";
+                    MessageBox.Show("Неверно введен размер!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
                 }
             }
 
@@ -154,16 +163,16 @@ namespace laba1igor
                     {
                         newX = rand.Next(-50, 50);
                         newY = rand.Next(-50, 50);
-                        _elipse[i].MoveTo(g, newX, newY, X_size, Y_size);
+                        _elipse[i].MoveTo(g, newX, newY, X_size, Y_size, true);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (x && y && checkIter)
+                if (x && y)
                 {
-                    if (iterator < _elipse.Length && _elipse[iterator] != null)
+                    if (checkIter && iterator > 0 && iterator < _elipse.Length && _elipse[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 
@@ -172,7 +181,7 @@ namespace laba1igor
                         {
                             if (i == iterator)
                             {
-                                _elipse[i].MoveTo(g, newX, newY, X_size, Y_size);
+                                _elipse[i].MoveTo(g, newX, newY, X_size, Y_size, false);
                             }
                             else
                             {
@@ -182,12 +191,14 @@ namespace laba1igor
                     }
                     else
                     {
-                        label6.Text = "Линии с таким номером нет!";
+                        MessageBox.Show("Эллипса с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    label6.Text = "Неверно введены координаты!";
+                    MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBoxDefaultButton.Button1);
                 }
             }
             PictureBoxUpd();

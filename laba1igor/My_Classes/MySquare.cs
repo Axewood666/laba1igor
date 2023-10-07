@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
@@ -29,8 +30,11 @@ namespace laba1igor.My_Classes
     public MySquare(MyPoint Cordinates,
       float side)
     {
-      CordPoint = Cordinates;
-      Side = side;
+        CordPoint = Cordinates;
+        Side = side;
+        MessageBox.Show($"Квадрат в точке [{CordPoint.XStart}, {CordPoint.YStart}], c размером {side} создан!", "Уведомление!",
+        MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+
     }
 
     public void Show(Graphics canvas)
@@ -42,26 +46,40 @@ namespace laba1igor.My_Classes
       canvas.FillRectangle(brush, CordPoint.XStart, CordPoint.YStart, _side, _side);
     }
 
-    public void MoveTo(Graphics canvas, float changeX, float changeY, int BoxSizeX, int BoxSizeY)
+    public void MoveTo(Graphics canvas, float changeX, float changeY, int BoxSizeX, int BoxSizeY, bool random)
     {
             if (CordPoint.XStart + _side + changeX < BoxSizeX && CordPoint.XStart + changeX > 3)
             {
                 CordPoint.ChangeX(changeX);
             }
+                else if (!random)
+                {
+                    MessageBox.Show("Перемещение по x невозможно!", "Выход за границы!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
             if (CordPoint.YStart + _side + changeY < BoxSizeY && CordPoint.YStart + changeY > 3)
             {
                 CordPoint.ChangeY(changeY);
             }
-
+                else if (!random)
+                {
+                    MessageBox.Show("Перемещение по y невозможно!", "Выход за границы!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                }
             Show(canvas);
     }
 
-    public void ResizeSquare(Graphics canvas, float SizeChange, int BoxSizeX, int BoxSizeY)
+    public void ResizeSquare(Graphics canvas, float SizeChange, int BoxSizeX, int BoxSizeY, bool random)
     {
         if (SizeChange > 0 && SizeChange < _side || CordPoint.XStart + SizeChange <= BoxSizeX && CordPoint.YStart + SizeChange <= BoxSizeY)
         {
             _side = SizeChange;
         }
+        else if (!random)
+            {
+                MessageBox.Show("Неверно введен размер!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+            }
         Show(canvas);
     }
   }

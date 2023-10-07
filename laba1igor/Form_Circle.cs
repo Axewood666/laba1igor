@@ -111,9 +111,9 @@ namespace laba1igor
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (first && checkIter && iterator < _circles.Length && _circles[iterator] != null)
+                if (first)
                 {
-                    if (iterator < _iter)
+                    if (checkIter && iterator > 0 &&  iterator < _iter && iterator < _circles.Length && _circles[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 
@@ -132,7 +132,7 @@ namespace laba1igor
                 }
                 else
                 {
-                    MessageBox.Show("Неверно введены данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Неверно введен радиус!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }
@@ -153,16 +153,16 @@ namespace laba1igor
                     {
                         newX = rand.Next(-50, 50);
                         newY = rand.Next(-50, 50);
-                        _circles[i].MoveTo(g, newX, newY, X_size, Y_size);
+                        _circles[i].MoveTo(g, newX, newY, X_size, Y_size, true);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (first && second && checkIter)
+                if (first && second)
                 {
-                    if (0 <= iterator && iterator < _circles.Length && _circles[iterator] != null)
+                    if (checkIter && 0 <= iterator && iterator < _circles.Length && _circles[iterator] != null)
                     {
                         g.Clear(Color.WhiteSmoke);
 
@@ -171,7 +171,7 @@ namespace laba1igor
                         {
                             if (i == iterator)
                             {
-                                _circles[i].MoveTo(g, newX, newY, X_size, Y_size);
+                                _circles[i].MoveTo(g, newX, newY, X_size, Y_size, false);
                             }
                             else
                             {
@@ -187,7 +187,7 @@ namespace laba1igor
                 }
                 else
                 {
-                    MessageBox.Show("Неверно введены данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }
