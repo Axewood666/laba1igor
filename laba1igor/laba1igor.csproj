@@ -52,6 +52,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Ring.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Ring.Designer.cs">
+      <DependentUpon>Form_Ring.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Line.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,7 @@
     <Compile Include="Form_Circle.Designer.cs">
       <DependentUpon>Form_Circle.cs</DependentUpon>
     </Compile>
+    <Compile Include="My_Classes\MyRing.cs" />
     <Compile Include="My_Classes\MyCircle.cs" />
     <Compile Include="My_Classes\MySquare.cs" />
     <Compile Include="My_Classes\MyLine.cs" />
@@ -85,6 +92,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Ring.resx">
+      <DependentUpon>Form_Ring.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Line.resx">
       <DependentUpon>Form_Line.cs</DependentUpon>

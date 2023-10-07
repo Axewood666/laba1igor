@@ -40,5 +40,11 @@ namespace laba1igor
             var form_Square = new Form_Square();
             form_Square.Show();
         }
+
+        private void ring_Click(object sender, EventArgs e)
+        {
+            var form_Ring = new Form_Ring();
+            form_Ring.Show();
+        }
     }
 }

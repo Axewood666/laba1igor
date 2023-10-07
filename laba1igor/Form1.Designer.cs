@@ -33,6 +33,7 @@
             this.line = new System.Windows.Forms.Button();
             this.rectangle = new System.Windows.Forms.Button();
             this.square = new System.Windows.Forms.Button();
+            this.ring = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // circle
@@ -89,11 +90,23 @@
             this.square.UseVisualStyleBackColor = true;
             this.square.Click += new System.EventHandler(this.square_Click);
             // 
+            // ring
+            // 
+            this.ring.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ring.Location = new System.Drawing.Point(90, 248);
+            this.ring.Name = "ring";
+            this.ring.Size = new System.Drawing.Size(165, 72);
+            this.ring.TabIndex = 5;
+            this.ring.Text = "Кольцо";
+            this.ring.UseVisualStyleBackColor = true;
+            this.ring.Click += new System.EventHandler(this.ring_Click);
+            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 261);
+            this.ClientSize = new System.Drawing.Size(361, 330);
+            this.Controls.Add(this.ring);
             this.Controls.Add(this.square);
             this.Controls.Add(this.rectangle);
             this.Controls.Add(this.line);
@@ -113,6 +126,7 @@
         private System.Windows.Forms.Button line;
         private System.Windows.Forms.Button rectangle;
         private System.Windows.Forms.Button square;
+        private System.Windows.Forms.Button ring;
     }
 }
 
