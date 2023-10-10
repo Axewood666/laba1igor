@@ -17,9 +17,8 @@ namespace laba1igor.My_Classes
             CordPoint = Cordinates;
         }
 
-        public void Show()
-        {
-
+        public void Show(Graphics canvas)
+        { 
         }
 
         public void MoveTo(float newX, float newY)

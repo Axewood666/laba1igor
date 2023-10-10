@@ -32,11 +32,11 @@ namespace laba1igor.My_Classes
         }
         public void ChangeX(float NewX)
         {
-            XStart += NewX;
+            XStart = NewX;
         }
         public void ChangeY(float NewY)
         {
-            YStart += NewY;
+            YStart = NewY;
         }
     }
 }

@@ -115,37 +115,46 @@ namespace laba1igor
                 {
                     if (_elipse[i] != null)
                     {
-                        int rNewH = rand.Next(20, 80);
-                        int rNewW = rand.Next(20, 80);
-                        _elipse[i].ResizeEllipse(g, rNewW, rNewH, X_size, Y_size, true);
+                        int rNewH = rand.Next(10, (int)Math.Min(_elipse[i].CordPoint.XStart, X_size - _elipse[i].CordPoint.XStart)/2);
+                        int rNewW = rand.Next(10, (int)Math.Min(_elipse[i].CordPoint.YStart, Y_size - _elipse[i].CordPoint.YStart)/2);
+                        _elipse[i].ResizeEllipse(g, rNewW, rNewH);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (nHeight && nWidth && nH > 0 && nW > 0)
+                if (checkIter && iterator >= 0 && iterator < _iter && _elipse[iterator] != null)
                 {
-                    if (checkIter && iterator >= 0 && iterator < _iter && _elipse[iterator] != null)
+                    if (nHeight && nWidth && nH > 0 && nW > 0)
                     {
-                        g.Clear(Color.WhiteSmoke);
-
-                        _elipse[iterator].ResizeEllipse(g, nW, nH, X_size, Y_size, false);
-                        for (var i = 0; i < _iter; i++)
+                        if ((nW < _elipse[iterator].Radius && nH < _elipse[iterator].YSize) || _elipse[iterator].CordPoint.XStart + nW / 2 <= X_size && _elipse[iterator].CordPoint.YStart + nH / 2 <= Y_size &&
+                           _elipse[iterator].CordPoint.XStart - nW / 2 >= 3 && _elipse[iterator].CordPoint.YStart - nH / 2 >= 3)
                         {
-                            if (i == iterator) continue;
-                            if (_elipse[i] != null) _elipse[i].Show(g);
+                            g.Clear(Color.WhiteSmoke);
+
+                            _elipse[iterator].ResizeEllipse(g, nW, nH);
+                            for (var i = 0; i < _iter; i++)
+                            {
+                                if (i == iterator) continue;
+                                if (_elipse[i] != null) _elipse[i].Show(g);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Размер выходит за границы", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Эллипса с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBox.Show("Неверно введен размер!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                         MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Неверно введен размер!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Эллипса с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }
@@ -165,43 +174,54 @@ namespace laba1igor
                 {
                     if (_elipse[i] != null)
                     {
-                        newX = rand.Next(-50, 50);
-                        newY = rand.Next(-50, 50);
-                        _elipse[i].MoveTo(g, newX, newY, X_size, Y_size, true);
+                        newX = rand.Next(_elipse[i].Radius / 2 + 3, X_size - _elipse[i].Radius / 2);
+                        newY = rand.Next(_elipse[i].YSize / 2 + 3, Y_size - _elipse[i].YSize / 2);
+                        _elipse[i].MoveTo(newX, newY);
+                        _elipse[i].Show(g);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (x && y)
+                if (checkIter && iterator >= 0 && iterator < _elipse.Length && _elipse[iterator] != null)
                 {
-                    if (checkIter && iterator >= 0 && iterator < _elipse.Length && _elipse[iterator] != null)
+                    if (x && y)
                     {
-                        g.Clear(Color.WhiteSmoke);
-
-
-                        for (var i = 0; i < _iter; i++)
+                        if (_elipse[iterator].Radius / 2 + newX < X_size && newX - _elipse[iterator].Radius / 2 > 3
+                            && _elipse[iterator].YSize / 2 + newY < Y_size && newY - _elipse[iterator].YSize / 2 > 3)
                         {
-                            if (i == iterator)
+                            g.Clear(Color.WhiteSmoke);
+
+
+                            for (var i = 0; i < _iter; i++)
                             {
-                                _elipse[i].MoveTo(g, newX, newY, X_size, Y_size, false);
+                                if (i == iterator)
+                                {
+                                    _elipse[i].MoveTo(newX, newY);
+                                    _elipse[i].Show(g);
+                                }
+                                else
+                                {
+                                    if (_elipse[i] != null) _elipse[i].Show(g);
+                                }
                             }
-                            else
-                            {
-                                if (_elipse[i] != null) _elipse[i].Show(g);
-                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выход за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Эллипса с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                         MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Эллипса с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }

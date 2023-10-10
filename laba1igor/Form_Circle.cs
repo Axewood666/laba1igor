@@ -37,7 +37,7 @@ namespace laba1igor
             }
             var x_cord = float.TryParse(textBox1.Text, out var x1);
             var y_cord = float.TryParse(textBox2.Text, out var y1);
-            var R = float.TryParse(textBox3.Text, out var radius);
+            var R = int.TryParse(textBox3.Text, out var radius);
             if (x_cord && y_cord && R && radius > 0)
             {
                 if (x1-radius >= 3 && x1 + radius <= X_size && y1-radius >= 3 && y1 + radius <= Y_size)
@@ -99,7 +99,7 @@ namespace laba1igor
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            var first = float.TryParse(textBox4.Text, out var newRadius);
+            var first = int.TryParse(textBox4.Text, out var newRadius);
             var iterStr = textBox5.Text;
             if (iterStr == "")
             {
@@ -108,36 +108,46 @@ namespace laba1igor
                 {
                     if (_circles[i] != null)
                     {
-                        newRadius = rand.Next(25, 150);
-                        _circles[i].ResizeCircle(g, newRadius, X_size, Y_size, true);
+                        newRadius = rand.Next(10, (int)Math.Min(Math.Min(_circles[i].CordPoint.XStart, X_size - _circles[i].CordPoint.XStart), 
+                            Math.Min(_circles[i].CordPoint.YStart, Y_size - _circles[i].CordPoint.YStart))-3);
+                        _circles[i].ResizeCircle(g, newRadius);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (first && newRadius > 0)
+                if (checkIter && iterator >= 0 && iterator < _iter && iterator < _circles.Length && _circles[iterator] != null)
                 {
-                    if (checkIter && iterator >= 0 &&  iterator < _iter && iterator < _circles.Length && _circles[iterator] != null)
+                    if (first && newRadius > 0)
                     {
-                        g.Clear(Color.WhiteSmoke);
-
-                        _circles[iterator].ResizeCircle(g, newRadius, X_size, Y_size, false);
-                        for (var i = 0; i < _iter; i++)
+                        if (newRadius < _circles[iterator].Radius || _circles[iterator].CordPoint.XStart + newRadius <= Y_size && _circles[iterator].CordPoint.YStart + newRadius <= Y_size
+                                && _circles[iterator].CordPoint.XStart - newRadius >= 3 && _circles[iterator].CordPoint.YStart - newRadius >= 3)
                         {
-                            if (i == iterator) continue;
-                            if (_circles[i] != null) _circles[i].Show(g);
+                            g.Clear(Color.WhiteSmoke);
+
+                            _circles[iterator].ResizeCircle(g, newRadius);
+                            for (var i = 0; i < _iter; i++)
+                            {
+                                if (i == iterator) continue;
+                                if (_circles[i] != null) _circles[i].Show(g);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выход за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Круга с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBox.Show("Неверно введен радиус!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                         MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Неверно введен радиус!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Круга с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }
@@ -156,43 +166,54 @@ namespace laba1igor
                 {
                     if (_circles[i] != null)
                     {
-                        newX = rand.Next(-50, 50);
-                        newY = rand.Next(-50, 50);
-                        _circles[i].MoveTo(g, newX, newY, X_size, Y_size, true);
+                        newX = rand.Next(_circles[i].Radius + 3, X_size - _circles[i].Radius);
+                        newY = rand.Next(_circles[i].Radius + 3, Y_size - _circles[i].Radius);
+                        _circles[i].MoveTo(newX, newY);
+                        _circles[i].Show(g);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (first && second)
+                if (checkIter && 0 <= iterator && iterator < _circles.Length && _circles[iterator] != null)
                 {
-                    if (checkIter && 0 <= iterator && iterator < _circles.Length && _circles[iterator] != null)
+                    if (first && second)
                     {
-                        g.Clear(Color.WhiteSmoke);
+                        if (_circles[iterator].Radius + newX < X_size && newX - _circles[iterator].Radius > 3
+                            && _circles[iterator].Radius + newY < Y_size && newY - _circles[iterator].Radius > 3)
 
-
-                        for (var i = 0; i < _iter; i++)
                         {
-                            if (i == iterator)
+
+                            g.Clear(Color.WhiteSmoke);
+                            for (var i = 0; i < _iter; i++)
                             {
-                                _circles[i].MoveTo(g, newX, newY, X_size, Y_size, false);
+                                if (i == iterator)
+                                {
+                                    _circles[i].MoveTo(newX, newY);
+                                    _circles[i].Show(g);
+                                }
+                                else
+                                {
+                                    if (_circles[i] != null) _circles[i].Show(g);
+                                }
                             }
-                            else
-                            {
-                                if (_circles[i] != null) _circles[i].Show(g);
-                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выход за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Круга с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                         MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Круга с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }

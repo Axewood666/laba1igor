@@ -110,25 +110,33 @@ namespace laba1igor
                 {
                     if (_squares[i] != null)
                     {
-                        float RandSize = rand.Next(25, 150);
-                        _squares[i].ResizeSquare(g, RandSize, X_size, Y_size, true);
+                        float RandSize = rand.Next(10, Math.Min((int)(X_size - _squares[i].CordPoint.XStart), (int)(Y_size - _squares[i].CordPoint.YStart)));
+                        _squares[i].ResizeSquare(g, RandSize);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (Size && S > 0)
+                if (checkIter && iterator >= 0 && iterator < _iter && _squares[iterator] != null)
                 {
-                    if (checkIter && iterator >= 0 && iterator < _iter && _squares[iterator] != null)
+                    if (Size && S > 0)
                     {
-                        g.Clear(Color.WhiteSmoke);
-
-                        _squares[iterator].ResizeSquare(g, S, X_size, Y_size, false);
-                        for (var i = 0; i < _iter; i++)
+                        if (S < _squares[iterator].Side || _squares[iterator].CordPoint.XStart + S <= X_size && _squares[iterator].CordPoint.YStart + S <= Y_size)
                         {
-                            if (i == iterator) continue;
-                            if (_squares[i] != null) _squares[i].Show(g);
+                            g.Clear(Color.WhiteSmoke);
+
+                            _squares[iterator].ResizeSquare(g, S);
+                            for (var i = 0; i < _iter; i++)
+                            {
+                                if (i == iterator) continue;
+                                if (_squares[i] != null) _squares[i].Show(g);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Размер выходит за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         }
                     }
                     else
@@ -159,32 +167,42 @@ namespace laba1igor
                 {
                     if (_squares[i] != null)
                     {
-                        newX = rand.Next(-50, 50);
-                        newY = rand.Next(-50, 50);
-                        _squares[i].MoveTo(g, newX, newY, X_size, Y_size, true);
+                        newX = rand.Next(3, X_size - (int)_squares[i].Side);
+                        newY = rand.Next(3, Y_size - (int)_squares[i].Side);
+                        _squares[i].MoveTo(newX, newY);
+                        _squares[i].Show(g);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (x && y)
+                if (checkIter && iterator >= 0 && iterator < _squares.Length && _squares[iterator] != null)
                 {
-                    if (checkIter && iterator >= 0 && iterator < _squares.Length &&  _squares[iterator] != null)
+                    if (x && y)
                     {
-                        g.Clear(Color.WhiteSmoke);
-
-
-                        for (var i = 0; i < _iter; i++)
+                        if (newX > 3 && newY > 3 && newX + _squares[iterator].Side < X_size && newY + _squares[iterator].Side < Y_size)
                         {
-                            if (i == iterator)
+                            g.Clear(Color.WhiteSmoke);
+
+
+                            for (var i = 0; i < _iter; i++)
                             {
-                                _squares[i].MoveTo(g, newX, newY, X_size, Y_size, false);
+                                if (i == iterator)
+                                {
+                                    _squares[i].MoveTo(newX, newY);
+                                    _squares[i].Show(g);
+                                }
+                                else
+                                {
+                                    if (_squares[i] != null) _squares[i].Show(g);
+                                }
                             }
-                            else
-                            {
-                                if (_squares[i] != null) _squares[i].Show(g);
-                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выход за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         }
                     }
                     else

@@ -102,8 +102,8 @@ namespace laba1igor
         private void button3_Click(object sender, EventArgs e)
         {
             label6.Text = "";
-            var Width = float.TryParse(textBox6.Text, out var W);
-            var Height = float.TryParse(textBox7.Text, out var H);
+            var Width = int.TryParse(textBox6.Text, out var W);
+            var Height = int.TryParse(textBox7.Text, out var H);
             var iterStr = textBox5.Text;
             if (iterStr == "")
             {
@@ -111,38 +111,46 @@ namespace laba1igor
                 for (var i = 0; i < _iter; i++)
                 {
                     if (_rectangles[i] != null)
-                    {   
-                        float RandH = rand.Next(10, 80);
-                        float RandW = rand.Next(10, 80);
-                        _rectangles[i].ResizeRectangle(g, RandW, RandH, X_size, Y_size, true);
+                    {
+                        int RandW = rand.Next(10, (int)(X_size - _rectangles[i].CordPoint.XStart));
+                        int RandH = rand.Next(10, (int)(Y_size - _rectangles[i].CordPoint.YStart));
+                        _rectangles[i].ResizeRectangle(g, RandW, RandH);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (Width &&  Height && W > 0 && H > 0)
+                if (checkIter && iterator >= 0 && iterator < _iter && _rectangles[iterator] != null)
                 {
-                    if (checkIter && iterator >= 0 && iterator < _iter && _rectangles[iterator] != null)
+                    if (Width && Height && W > 0 && H > 0)
                     {
-                        g.Clear(Color.WhiteSmoke);
-
-                       _rectangles[iterator].ResizeRectangle(g, W, H, X_size, Y_size, false);
-                        for (var i = 0; i < _iter; i++)
+                        if ((W < _rectangles[iterator].Side && H < _rectangles[iterator].YSize) || _rectangles[iterator].CordPoint.XStart + W <= X_size && _rectangles[iterator].CordPoint.YStart + H <= Y_size)
                         {
-                            if (i == iterator) continue;
-                            if (_rectangles[i] != null) _rectangles[i].Show(g);
+                            g.Clear(Color.WhiteSmoke);
+
+                            _rectangles[iterator].ResizeRectangle(g, W, H);
+                            for (var i = 0; i < _iter; i++)
+                            {
+                                if (i == iterator) continue;
+                                if (_rectangles[i] != null) _rectangles[i].Show(g);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Размер выходит за границы", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Прямоугольника с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBox.Show("Неверно введен размер!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                         MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Неверно введен размер!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Прямоугольника с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }
@@ -162,43 +170,53 @@ namespace laba1igor
                 {
                     if (_rectangles[i] != null)
                     {
-                        float RandX = rand.Next(-50, 50);
-                        float RandY = rand.Next(-50, 50);
-                        _rectangles[i].MoveTo(g, RandX, RandY, X_size, Y_size, true);
+                        float RandX = rand.Next(3, (int)(X_size - _rectangles[i].Side));
+                        float RandY = rand.Next(3, (int)(Y_size - _rectangles[i].YSize));
+                        _rectangles[i].MoveTo(RandX, RandY);
+                        _rectangles[i].Show(g);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (x && y)
+                if (checkIter && iterator >= 0 && iterator < _rectangles.Length && _rectangles[iterator] != null)
                 {
-                    if (checkIter && iterator >= 0 && iterator < _rectangles.Length  && _rectangles[iterator] != null )
+                    if (x && y)
                     {
-                        g.Clear(Color.WhiteSmoke);
-
-
-                        for (var i = 0; i < _iter; i++)
+                        if (newX > 3 && newY > 3 && newX + _rectangles[iterator].Side < X_size && newY + _rectangles[iterator].YSize < Y_size)
                         {
-                            if (i == iterator)
+                            g.Clear(Color.WhiteSmoke);
+
+
+                            for (var i = 0; i < _iter; i++)
                             {
-                                _rectangles[i].MoveTo(g, newX, newY, X_size, Y_size, false);
+                                if (i == iterator)
+                                {
+                                    _rectangles[i].MoveTo(newX, newY);
+                                    _rectangles[i].Show(g);
+                                }
+                                else
+                                {
+                                    if (_rectangles[i] != null) _rectangles[i].Show(g);
+                                }
                             }
-                            else
-                            {
-                                if (_rectangles[i] != null) _rectangles[i].Show(g);
-                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выход за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Прямоугольника с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                         MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Прямоугольника с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }
