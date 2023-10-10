@@ -82,6 +82,7 @@
     <Compile Include="Form_Circle.Designer.cs">
       <DependentUpon>Form_Circle.cs</DependentUpon>
     </Compile>
+    <Compile Include="My_Classes\MyFigure.cs" />
     <Compile Include="My_Classes\MyRing.cs" />
     <Compile Include="My_Classes\MyCircle.cs" />
     <Compile Include="My_Classes\MySquare.cs" />

@@ -4,37 +4,10 @@ using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    internal class MyCircle
+    internal class MyCircle : MyFigure
   {
-    //private float _xCenter;
-    //private float _yCenter;
     private float _radius;
 
-        //public float XCenter
-        //{
-        //  get => _xCenter;
-        //  set
-        //  {
-        //    if (value >= 0)
-        //    {
-        //      _xCenter = value;
-        //    }
-        //  }
-        //}
-
-        //public float YCenter
-        //{
-        //  get => _yCenter;
-        //  set
-        //  {
-        //    if (value >= 0)
-        //    {
-        //      _yCenter = value;
-        //    }
-        //  }
-        //}
-    public MyPoint CordPoint
-    { get; set; }
     public float Radius
     {
       get => _radius;
@@ -47,9 +20,8 @@ namespace laba1igor.My_Classes
       }
     }
 
-    public MyCircle(MyPoint Cords, float radiusValue)
+        public MyCircle(MyPoint CordPoint, float radiusValue) : base(CordPoint)
     {
-      CordPoint = Cords;
       Radius = radiusValue;
       MessageBox.Show($"Круг с центром в точке [{CordPoint.XStart}, {CordPoint.YStart}], c радиусом {Radius} создан!", "Уведомление!",
       MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -69,7 +41,7 @@ namespace laba1igor.My_Classes
     {
         if (CordPoint.XStart + _radius + newX < BoxSizeX && CordPoint.XStart - _radius + newX > 3)
             {
-                CordPoint.ChangeX(newX);
+                base.MoveTo(newX, 0);
             }
             else if (!random)
             {
@@ -78,7 +50,7 @@ namespace laba1igor.My_Classes
             }
         if (CordPoint.YStart + _radius + newY < BoxSizeY && CordPoint.YStart - _radius + newY > 3)
             {
-                CordPoint.ChangeY(newY);
+                base.MoveTo(0, newY);
             }
             else if (!random)
             {
