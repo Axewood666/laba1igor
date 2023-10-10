@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    internal class MyCircle : MyFigure
+    public class MyCircle : MyFigure
   {
     private float _radius;
 

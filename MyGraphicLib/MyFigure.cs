@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    internal class MyFigure
+    public class MyFigure
     {
         public MyPoint CordPoint
         { get; set; }

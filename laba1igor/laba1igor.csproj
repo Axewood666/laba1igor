@@ -82,13 +82,6 @@
     <Compile Include="Form_Circle.Designer.cs">
       <DependentUpon>Form_Circle.cs</DependentUpon>
     </Compile>
-    <Compile Include="My_Classes\MyFigure.cs" />
-    <Compile Include="My_Classes\MyRing.cs" />
-    <Compile Include="My_Classes\MyCircle.cs" />
-    <Compile Include="My_Classes\MySquare.cs" />
-    <Compile Include="My_Classes\MyLine.cs" />
-    <Compile Include="My_Classes\MyRectangle.cs" />
-    <Compile Include="My_Classes\MyPoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -130,6 +123,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyGraphicLib\MyGraphicLib.csproj">
+      <Project>{02ad2851-29d6-42d0-b07d-30ec6a016806}</Project>
+      <Name>MyGraphicLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

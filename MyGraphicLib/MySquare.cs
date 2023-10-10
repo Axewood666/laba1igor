@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    internal class MySquare
+    public class MySquare
   {
     //private float _xCenter;
     //private float _yCenter;

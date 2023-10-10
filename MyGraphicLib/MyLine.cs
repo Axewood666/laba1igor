@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    internal class MyEllipse
+    public class MyEllipse
   {
         //private float _xStart;
         //private float _yStart;

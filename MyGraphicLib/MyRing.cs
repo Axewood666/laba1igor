@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    internal class MyRing
+    public class MyRing
   {
     private float _radius;
     public MyPoint CordPoint

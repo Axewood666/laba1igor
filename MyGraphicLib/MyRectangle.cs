@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    internal class MyRectangle
+    public class MyRectangle
   {
     //private float _xStart;
     //private float _yStart;

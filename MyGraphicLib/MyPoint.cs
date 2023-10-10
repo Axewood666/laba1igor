@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    internal class MyPoint
+    public class MyPoint
     {
         private float _xStart;
         private float _yStart;
