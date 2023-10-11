@@ -38,5 +38,10 @@ namespace laba1igor.My_Classes
         {
             YStart += NewY;
         }
+        public void CenterXY(float radius) 
+        {
+            XStart -= radius;
+            YStart -= radius;
+        }
     }
 }

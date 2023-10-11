@@ -35,7 +35,10 @@ namespace laba1igor.My_Classes
         //}
     public MyPoint CordPoint
     { get; set; }
-    public float Radius
+    public Color color1
+    { get; set; }
+
+        public float Radius
     {
       get => _radius;
       set
@@ -47,10 +50,11 @@ namespace laba1igor.My_Classes
       }
     }
 
-    public MyCircle(MyPoint Cords, float radiusValue)
+    public MyCircle(MyPoint Cords, float radiusValue, Color color)
     {
       CordPoint = Cords;
       Radius = radiusValue;
+      color1 = color;
       MessageBox.Show($"Круг с центром в точке [{CordPoint.XStart}, {CordPoint.YStart}], c радиусом {Radius} создан!", "Уведомление!",
       MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
@@ -58,16 +62,16 @@ namespace laba1igor.My_Classes
     public void Show(Graphics canvas)
     {
       var pen = new Pen(Color.Black, 6);
-      var brush = new SolidBrush(Color.DarkRed);
-      var centerXDraw = CordPoint.XStart - _radius;
-      var centerYDraw = CordPoint.YStart - _radius;
+      var brush = new SolidBrush(color1);
+      var centerXDraw = CordPoint.XStart - Radius;
+      var centerYDraw = CordPoint.YStart - Radius;
       canvas.DrawEllipse(pen, centerXDraw, centerYDraw, Radius * 2, Radius * 2);
       canvas.FillEllipse(brush, centerXDraw, centerYDraw, Radius * 2, Radius * 2);
     }
 
     public void MoveTo(Graphics canvas, float newX, float newY, int BoxSizeX, int BoxSizeY, bool random)
     {
-        if (CordPoint.XStart + _radius + newX < BoxSizeX && CordPoint.XStart - _radius + newX > 3)
+        if (CordPoint.XStart + Radius + newX <= BoxSizeX && CordPoint.XStart - Radius + newX >= 3)
             {
                 CordPoint.ChangeX(newX);
             }
@@ -76,7 +80,7 @@ namespace laba1igor.My_Classes
                 MessageBox.Show("Перемещение по x невозможно!", "Выход за границы!",
                 MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
-        if (CordPoint.YStart + _radius + newY < BoxSizeY && CordPoint.YStart - _radius + newY > 3)
+        if (CordPoint.YStart + Radius + newY <= BoxSizeY && CordPoint.YStart - Radius + newY >= 3)
             {
                 CordPoint.ChangeY(newY);
             }
