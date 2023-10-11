@@ -43,7 +43,7 @@ namespace laba1igor
                 if (x1 - radius >= 3 && x1 + radius <= X_size && y1 - radius >= 3 && y1 + radius <= Y_size)
                 {
                     _points[_iter] = new MyPoint(x1, y1);
-                    _circles[_iter] = new MyCircle(_points[_iter], radius);
+                    _circles[_iter] = new MyCircle(_points[_iter], radius, Color.DarkRed);
                     _circles[_iter].Show(g);
                     _iter++;
                 }
@@ -250,7 +250,7 @@ namespace laba1igor
                                            rand.Next(100, 400));
 
                 _circles[i] = new MyCircle(_points[i],
-                                            rand.Next(25, 100));
+                                            rand.Next(25, 100), Color.DarkRed);
                 _circles[i].Show(g);
             }
 

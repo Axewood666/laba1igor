@@ -37,13 +37,13 @@ namespace laba1igor
             }
             var x_cord = float.TryParse(textBox1.Text, out var x1);
             var y_cord = float.TryParse(textBox2.Text, out var y1);
-            var R = float.TryParse(textBox3.Text, out var radius);
+            var R = int.TryParse(textBox3.Text, out var radius);
             if (x_cord && y_cord && R && radius > 0)
             {
                 if (x1 - radius >= 3 && x1 + radius <= X_size && y1 - radius >= 3 && y1 + radius <= Y_size)
                 {
                     _points[_iter] = new MyPoint(x1, y1);
-                    _rings[_iter] = new MyRing(_points[_iter], radius);
+                    _rings[_iter] = new MyRing(_points[_iter], radius, Color.DarkGoldenrod);
                     _rings[_iter].Show(g);
                     _iter++;
                 }
@@ -99,7 +99,7 @@ namespace laba1igor
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            var first = float.TryParse(textBox4.Text, out var newRadius);
+            var first = int.TryParse(textBox4.Text, out var newRadius);
             var iterStr = textBox5.Text;
             if (iterStr == "")
             {
@@ -108,25 +108,35 @@ namespace laba1igor
                 {
                     if (_rings[i] != null)
                     {
-                        newRadius = rand.Next(25, 150);
-                        _rings[i].ResizeCircle(g, newRadius, X_size, Y_size, true);
+                        newRadius = rand.Next(10, (int)Math.Min(Math.Min(_rings[i].circle1.CordPoint.XStart, X_size - _rings[i].circle1.CordPoint.XStart),
+                            Math.Min(_rings[i].circle1.CordPoint.YStart, Y_size - _rings[i].circle1.CordPoint.YStart)) - 3);
+                        _rings[i].ResizeRing(g, newRadius);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (first && newRadius > 0)
+                if (checkIter && iterator >= 0 && iterator < _iter && iterator < _rings.Length && _rings[iterator] != null)
                 {
-                    if (checkIter && iterator >= 0 && iterator < _iter && iterator < _rings.Length && _rings[iterator] != null)
+                    if (first && newRadius > 0)
                     {
-                        g.Clear(Color.WhiteSmoke);
-
-                        _rings[iterator].ResizeCircle(g, newRadius, X_size, Y_size, false);
-                        for (var i = 0; i < _iter; i++)
+                        if (newRadius < _rings[iterator].circle1.Radius || _rings[iterator].circle1.CordPoint.XStart + newRadius <= Y_size && _rings[iterator].circle1.CordPoint.YStart + newRadius <= Y_size
+                                && _rings[iterator].circle1.CordPoint.XStart - newRadius >= 3 && _rings[iterator].circle1.CordPoint.YStart - newRadius >= 3)
                         {
-                            if (i == iterator) continue;
-                            if (_rings[i] != null) _rings[i].Show(g);
+                            g.Clear(Color.WhiteSmoke);
+
+                            _rings[iterator].ResizeRing(g, newRadius);
+                            for (var i = 0; i < _iter; i++)
+                            {
+                                if (i == iterator) continue;
+                                if (_rings[i] != null) _rings[i].Show(g);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выход за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         }
                     }
                     else
@@ -156,43 +166,54 @@ namespace laba1igor
                 {
                     if (_rings[i] != null)
                     {
-                        newX = rand.Next(-50, 50);
-                        newY = rand.Next(-50, 50);
-                        _rings[i].MoveTo(g, newX, newY, X_size, Y_size, true);
+                        newX = rand.Next(_rings[i].circle1.Radius + 3, X_size - _rings[i].circle1.Radius);
+                        newY = rand.Next(_rings[i].circle1.Radius + 3, Y_size - _rings[i].circle1.Radius);
+                        _rings[i].MoveTo(g, newX, newY);
+                        _rings[i].Show(g);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (first && second)
+                if (checkIter && 0 <= iterator && iterator < _rings.Length && _rings[iterator] != null)
                 {
-                    if (checkIter && 0 <= iterator && iterator < _rings.Length && _rings[iterator] != null)
+                    if (first && second)
                     {
-                        g.Clear(Color.WhiteSmoke);
-
-
-                        for (var i = 0; i < _iter; i++)
+                        if (_rings[iterator].circle1.Radius + newX < X_size && newX - _rings[iterator].circle1.Radius > 3
+                            && _rings[iterator].circle1.Radius + newY < Y_size && newY - _rings[iterator].circle1.Radius > 3)
                         {
-                            if (i == iterator)
+                            g.Clear(Color.WhiteSmoke);
+
+
+                            for (var i = 0; i < _iter; i++)
                             {
-                                _rings[i].MoveTo(g, newX, newY, X_size, Y_size, false);
+                                if (i == iterator)
+                                {
+                                    _rings[i].MoveTo(g, newX, newY);
+                                    _rings[i].Show(g);
+                                }
+                                else
+                                {
+                                    if (_rings[i] != null) _rings[i].Show(g);
+                                }
                             }
-                            else
-                            {
-                                if (_rings[i] != null) _rings[i].Show(g);
-                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Выход за границы!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Кольца с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                        MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                         MessageBoxDefaultButton.Button1);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Неверно введены координаты!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Кольца с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }
@@ -229,7 +250,7 @@ namespace laba1igor
                                            rand.Next(100, 400));
 
                 _rings[i] = new MyRing(_points[i],
-                                            rand.Next(25, 100));
+                                            rand.Next(25, 100), Color.DarkRed);
                 _rings[i].Show(g);
             }
 

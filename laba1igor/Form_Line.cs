@@ -44,7 +44,7 @@ namespace laba1igor
                 if (x1 - W / 2 >= 3 && x1 + W / 2 <= X_size && y1 - H / 2 >= 3 && y1 + H / 2 <= Y_size)
                 {
                     _points[_iter] = new MyPoint(x1, y1);
-                    _elipse[_iter] = new MyEllipse(_points[_iter], W, H);
+                    _elipse[_iter] = new MyEllipse(_points[_iter], W, H, Color.Aquamarine);
                     _elipse[_iter].Show(g);
                     _iter++;
                 }
@@ -259,7 +259,7 @@ namespace laba1igor
                                            rand.Next(60, 390));
                 _elipse[i] = new MyEllipse(_points[i],
                                             rand.Next(20, 120),
-                                            rand.Next(20, 120));
+                                            rand.Next(20, 120), Color.Aquamarine);
                 _elipse[i].Show(g);
             }
 

@@ -21,8 +21,9 @@ namespace laba1igor.My_Classes
         }
 
         public MyEllipse(MyPoint CordPoint,
-          int xSizeInit, int ySizeInit) : base (CordPoint, xSizeInit)
+          int xSizeInit, int ySizeInit, Color color) : base (CordPoint, xSizeInit, color)
         {
+            _color = color;
             YSize = ySizeInit;
             MessageBox.Show($"Эллипс с центром в точке [{CordPoint.XStart}, {CordPoint.YStart}], c шириной {xSizeInit} и высотой {ySizeInit} создан!", "Уведомление!",
             MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -31,7 +32,7 @@ namespace laba1igor.My_Classes
         public override void Show(Graphics canvas)
         {
             Pen pen = new Pen(Color.Black, 6);
-            Brush brush = new SolidBrush(Color.OrangeRed);
+            Brush brush = new SolidBrush(_color);
             var centerXDraw = base.CordPoint.XStart - Radius / 2F;
             var centerYDraw = base.CordPoint.YStart - YSize / 2F;
             canvas.DrawEllipse(pen, centerXDraw, centerYDraw, Radius, YSize);
