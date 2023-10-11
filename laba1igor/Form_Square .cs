@@ -42,10 +42,10 @@ namespace laba1igor
             {
                 if (x1 >= 3 && x1 + S <= X_size && y1 >= 3 && y1 + S <= Y_size)
                 {
-                _points[_iter] = new MyPoint(x1, y1);
-                _squares[_iter] = new MySquare(_points[_iter], S);
-                _squares[_iter].Show(g);
-                _iter++;
+                    _points[_iter] = new MyPoint(x1, y1);
+                    _squares[_iter] = new MySquare(_points[_iter], S);
+                    _squares[_iter].Show(g);
+                    _iter++;
                 }
                 else
                 {
@@ -70,7 +70,7 @@ namespace laba1igor
                 for (var i = _iter - 1; i >= 0; i--)
                 {
                     _squares[i] = null;
-                    _points[i] = null;  
+                    _points[i] = null;
                 }
                 _iter = 0;
                 g.Clear(Color.WhiteSmoke);

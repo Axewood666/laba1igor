@@ -43,7 +43,7 @@ namespace laba1igor
             {
                 if (x1 >= 3 && x1 + W <= X_size && y1 >= 3 && y1 + H <= Y_size)
                 {
-                    _points[_iter] = new MyPoint(x1,y1);
+                    _points[_iter] = new MyPoint(x1, y1);
                     _rectangles[_iter] = new MyRectangle(_points[_iter], W, H);
                     _rectangles[_iter].Show(g);
                     _iter++;

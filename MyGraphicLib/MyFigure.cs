@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    public class MyFigure
+    public abstract class MyFigure
     {
         public MyPoint CordPoint
         { get; set; }
@@ -17,9 +17,7 @@ namespace laba1igor.My_Classes
             CordPoint = Cordinates;
         }
 
-        public void Show(Graphics canvas)
-        { 
-        }
+        public abstract void Show(Graphics canvas);
 
         public void MoveTo(float newX, float newY)
         {

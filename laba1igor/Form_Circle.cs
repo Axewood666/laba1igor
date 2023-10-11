@@ -40,7 +40,7 @@ namespace laba1igor
             var R = int.TryParse(textBox3.Text, out var radius);
             if (x_cord && y_cord && R && radius > 0)
             {
-                if (x1-radius >= 3 && x1 + radius <= X_size && y1-radius >= 3 && y1 + radius <= Y_size)
+                if (x1 - radius >= 3 && x1 + radius <= X_size && y1 - radius >= 3 && y1 + radius <= Y_size)
                 {
                     _points[_iter] = new MyPoint(x1, y1);
                     _circles[_iter] = new MyCircle(_points[_iter], radius);
@@ -58,7 +58,7 @@ namespace laba1igor
                 MessageBox.Show("Неверно введены данные!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button1);
             }
-           PictureBoxUpd();
+            PictureBoxUpd();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -79,8 +79,8 @@ namespace laba1igor
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && 0 <= iterator && iterator < _circles.Length  && _circles[iterator] != null)
-                {   
+                if (checkIter && 0 <= iterator && iterator < _circles.Length && _circles[iterator] != null)
+                {
                     CircleDispose(iterator);
                     g.Clear(Color.WhiteSmoke);
                     for (var i = 0; i < _iter; i++)
@@ -108,8 +108,8 @@ namespace laba1igor
                 {
                     if (_circles[i] != null)
                     {
-                        newRadius = rand.Next(10, (int)Math.Min(Math.Min(_circles[i].CordPoint.XStart, X_size - _circles[i].CordPoint.XStart), 
-                            Math.Min(_circles[i].CordPoint.YStart, Y_size - _circles[i].CordPoint.YStart))-3);
+                        newRadius = rand.Next(10, (int)Math.Min(Math.Min(_circles[i].CordPoint.XStart, X_size - _circles[i].CordPoint.XStart),
+                            Math.Min(_circles[i].CordPoint.YStart, Y_size - _circles[i].CordPoint.YStart)) - 3);
                         _circles[i].ResizeCircle(g, newRadius);
                     }
                 }

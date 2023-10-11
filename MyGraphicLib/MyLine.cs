@@ -28,7 +28,7 @@ namespace laba1igor.My_Classes
             MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
 
-        public void Show(Graphics canvas)
+        public override void Show(Graphics canvas)
         {
             Pen pen = new Pen(Color.Black, 6);
             Brush brush = new SolidBrush(Color.OrangeRed);

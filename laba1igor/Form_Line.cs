@@ -41,7 +41,7 @@ namespace laba1igor
             var Width = int.TryParse(textBox4.Text, out var W);
             if (x_cord && y_cord && Height && Width && H > 0 && W > 0)
             {
-                if (x1 - W/2 >= 3 && x1 + W/2 <= X_size && y1 - H/2 >= 3 && y1 + H/2 <= Y_size)
+                if (x1 - W / 2 >= 3 && x1 + W / 2 <= X_size && y1 - H / 2 >= 3 && y1 + H / 2 <= Y_size)
                 {
                     _points[_iter] = new MyPoint(x1, y1);
                     _elipse[_iter] = new MyEllipse(_points[_iter], W, H);
@@ -115,8 +115,8 @@ namespace laba1igor
                 {
                     if (_elipse[i] != null)
                     {
-                        int rNewH = rand.Next(10, (int)Math.Min(_elipse[i].CordPoint.XStart, X_size - _elipse[i].CordPoint.XStart)/2);
-                        int rNewW = rand.Next(10, (int)Math.Min(_elipse[i].CordPoint.YStart, Y_size - _elipse[i].CordPoint.YStart)/2);
+                        int rNewH = rand.Next(10, (int)Math.Min(_elipse[i].CordPoint.XStart, X_size - _elipse[i].CordPoint.XStart) / 2);
+                        int rNewW = rand.Next(10, (int)Math.Min(_elipse[i].CordPoint.YStart, Y_size - _elipse[i].CordPoint.YStart) / 2);
                         _elipse[i].ResizeEllipse(g, rNewW, rNewH);
                     }
                 }
