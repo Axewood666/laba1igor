@@ -34,6 +34,7 @@
             this.rectangle = new System.Windows.Forms.Button();
             this.square = new System.Windows.Forms.Button();
             this.ring = new System.Windows.Forms.Button();
+            this.Rhombus = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // circle
@@ -101,11 +102,23 @@
             this.ring.UseVisualStyleBackColor = true;
             this.ring.Click += new System.EventHandler(this.ring_Click);
             // 
+            // Rhombus
+            // 
+            this.Rhombus.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Rhombus.Location = new System.Drawing.Point(3, 326);
+            this.Rhombus.Name = "Rhombus";
+            this.Rhombus.Size = new System.Drawing.Size(166, 72);
+            this.Rhombus.TabIndex = 6;
+            this.Rhombus.Text = "Ромб";
+            this.Rhombus.UseVisualStyleBackColor = true;
+            this.Rhombus.Click += new System.EventHandler(this.Rhombus_Click);
+            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 330);
+            this.ClientSize = new System.Drawing.Size(361, 413);
+            this.Controls.Add(this.Rhombus);
             this.Controls.Add(this.ring);
             this.Controls.Add(this.square);
             this.Controls.Add(this.rectangle);
@@ -127,6 +140,7 @@
         private System.Windows.Forms.Button rectangle;
         private System.Windows.Forms.Button square;
         private System.Windows.Forms.Button ring;
+        private System.Windows.Forms.Button Rhombus;
     }
 }
 

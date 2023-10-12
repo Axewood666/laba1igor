@@ -1,28 +1,16 @@
-﻿using System.Drawing;
+﻿using MyGraphicLib;
+using System.Drawing;
 using System.Net;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace laba1igor.My_Classes
 {
-    public class MyRectangle : MySquare
+    public class MyRectangle : MyQuadrilateral
     {
-        private int _ySize;
-        public int YSize
-        {
-            get => _ySize;
-            set
-            {
-                if (value > 0)
-                {
-                    _ySize = value;
-                }
-            }
-        }
 
-        public MyRectangle(MyPoint CordPoint, int xSizeInit, int ySizeInit) : base(CordPoint, xSizeInit)
+        public MyRectangle(MyPoint CordPoint, int xSizeInit, int ySizeInit) : base(CordPoint, xSizeInit, ySizeInit)
         {
-            YSize = ySizeInit;
             MessageBox.Show($"Прямоугольник в точке [{CordPoint.XStart}, {CordPoint.YStart}], c шириной {xSizeInit} и высотой {ySizeInit} создан!", "Уведомление!",
             MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
@@ -31,14 +19,14 @@ namespace laba1igor.My_Classes
         {
             Pen pen = new Pen(Color.Black, 6);
             Brush brush = new SolidBrush(Color.OrangeRed);
-            canvas.DrawRectangle(pen, CordPoint.XStart, CordPoint.YStart, Side, YSize);
-            canvas.FillRectangle(brush, CordPoint.XStart, CordPoint.YStart, Side, YSize);
+            canvas.DrawRectangle(pen, CordPoint.XStart, CordPoint.YStart, Width, Height);
+            canvas.FillRectangle(brush, CordPoint.XStart, CordPoint.YStart, Width, Height);
         }
 
         public void ResizeRectangle(Graphics canvas, float xNewSize, float yNewSize)
         {
-            Side = (int)xNewSize;
-            YSize = (int)yNewSize;
+            Width = (int)xNewSize;
+            Height = (int)yNewSize;
             Show(canvas);
         }
     }

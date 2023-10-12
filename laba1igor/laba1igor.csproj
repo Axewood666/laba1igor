@@ -52,6 +52,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Rhombus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Rhombus.Designer.cs">
+      <DependentUpon>Form_Rhombus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Ring.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Rhombus.resx">
+      <DependentUpon>Form_Rhombus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Ring.resx">
       <DependentUpon>Form_Ring.cs</DependentUpon>

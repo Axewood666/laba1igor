@@ -125,7 +125,7 @@ namespace laba1igor
                 {
                     if (Width && Height && W > 0 && H > 0)
                     {
-                        if ((W < _rectangles[iterator].Side && H < _rectangles[iterator].YSize) || _rectangles[iterator].CordPoint.XStart + W <= X_size && _rectangles[iterator].CordPoint.YStart + H <= Y_size)
+                        if ((W < _rectangles[iterator].Width && H < _rectangles[iterator].Height) || _rectangles[iterator].CordPoint.XStart + W <= X_size && _rectangles[iterator].CordPoint.YStart + H <= Y_size)
                         {
                             g.Clear(Color.WhiteSmoke);
 
@@ -170,8 +170,8 @@ namespace laba1igor
                 {
                     if (_rectangles[i] != null)
                     {
-                        float RandX = rand.Next(3, (int)(X_size - _rectangles[i].Side));
-                        float RandY = rand.Next(3, (int)(Y_size - _rectangles[i].YSize));
+                        float RandX = rand.Next(3, (int)(X_size - _rectangles[i].Width));
+                        float RandY = rand.Next(3, (int)(Y_size - _rectangles[i].Height));
                         _rectangles[i].MoveTo(RandX, RandY);
                         _rectangles[i].Show(g);
                     }
@@ -184,7 +184,7 @@ namespace laba1igor
                 {
                     if (x && y)
                     {
-                        if (newX > 3 && newY > 3 && newX + _rectangles[iterator].Side < X_size && newY + _rectangles[iterator].YSize < Y_size)
+                        if (newX > 3 && newY > 3 && newX + _rectangles[iterator].Width < X_size && newY + _rectangles[iterator].Height < Y_size)
                         {
                             g.Clear(Color.WhiteSmoke);
 

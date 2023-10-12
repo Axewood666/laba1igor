@@ -47,7 +47,9 @@
     <Compile Include="MyFigure.cs" />
     <Compile Include="MyLine.cs" />
     <Compile Include="MyPoint.cs" />
+    <Compile Include="MyQuadrilateral.cs" />
     <Compile Include="MyRectangle.cs" />
+    <Compile Include="MyRhombus.cs" />
     <Compile Include="MyRing.cs" />
     <Compile Include="MySquare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

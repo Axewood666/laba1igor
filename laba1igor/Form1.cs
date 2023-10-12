@@ -46,5 +46,11 @@ namespace laba1igor
             var form_Ring = new Form_Ring();
             form_Ring.Show();
         }
+
+        private void Rhombus_Click(object sender, EventArgs e)
+        {
+            var form_Rhombus = new Form_Rhombus();
+            form_Rhombus.Show();
+        }
     }
 }
