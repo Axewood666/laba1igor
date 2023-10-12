@@ -46,7 +46,7 @@ namespace laba1igor.My_Classes
             YSize = (int)yNewSize;
             Show(canvas);
         }
-        public void ReverseRhombus(Graphics canvas)
+        public void ReverseEllipse(Graphics canvas)
         {
             (Radius, YSize) = (YSize, Radius);
             Show(canvas);

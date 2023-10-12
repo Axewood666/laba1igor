@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace MyGraphicLib
 {
-    public class MyQuadrilateral : MyFigure
+    public abstract class MyQuadrilateral : MyFigure
     {
         private int width;
         private int height;
@@ -40,14 +40,15 @@ namespace MyGraphicLib
             this.Width = width;
             this.Height = height;
         }
-        public override void Show(Graphics canvas)
-        {
-
-        }
+        public override abstract void Show(Graphics canvas);
         public void ResizeQua (int Nwidth, int Nheight)
         {
             Width = Nwidth;
             Height = Nheight;
+        }
+        public void ReverseQua()
+        {
+            (Width, Height) = (Height, Width);
         }
     }
 }

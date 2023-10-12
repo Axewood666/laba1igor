@@ -2,7 +2,7 @@
 
 namespace laba1igor
 {
-    partial class Form_Rhombus
+    partial class Form_Trapezoid
     {
         Graphics g;
         Bitmap buf;
@@ -104,7 +104,7 @@ namespace laba1igor
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 48);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Создать ромб";
+            this.button1.Text = "Создать трапецию";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -130,18 +130,18 @@ namespace laba1igor
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 40);
             this.button2.TabIndex = 9;
-            this.button2.Text = "Удалить ромб";
+            this.button2.Text = "Удалить трапецию";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(319, 527);
+            this.label5.Location = new System.Drawing.Point(304, 527);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.Size = new System.Drawing.Size(91, 13);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Номер ромба";
+            this.label5.Text = "Номер трапеции";
             // 
             // textBox5
             // 
@@ -180,7 +180,7 @@ namespace laba1igor
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(365, 579);
+            this.label9.Location = new System.Drawing.Point(359, 579);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 18;
@@ -206,7 +206,7 @@ namespace laba1igor
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(124, 39);
             this.button5.TabIndex = 13;
-            this.button5.Text = "Создать случайные ромбы";
+            this.button5.Text = "Создать случайные трапеции";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -238,15 +238,15 @@ namespace laba1igor
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(618, 562);
+            this.button6.Location = new System.Drawing.Point(616, 552);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(96, 35);
+            this.button6.Size = new System.Drawing.Size(96, 40);
             this.button6.TabIndex = 23;
             this.button6.Text = "Ревёрс";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // Form_Rhombus
+            // Form_Trapezoid
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -273,8 +273,8 @@ namespace laba1igor
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form_Rhombus";
-            this.Text = "Form_Rhombus";
+            this.Name = "Form_Trapezoid";
+            this.Text = "Form_Trapezoid";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

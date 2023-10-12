@@ -53,6 +53,7 @@ namespace laba1igor
             this.button3 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -235,11 +236,22 @@ namespace laba1igor
             this.textBox4.Size = new System.Drawing.Size(39, 20);
             this.textBox4.TabIndex = 3;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(615, 565);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(96, 40);
+            this.button6.TabIndex = 23;
+            this.button6.Text = "Ревёрс";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form_Rect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 661);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button5);
@@ -292,5 +304,6 @@ namespace laba1igor
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button6;
     }
 }

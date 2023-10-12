@@ -19,7 +19,7 @@ namespace laba1igor.My_Classes
 
         public abstract void Show(Graphics canvas);
 
-        public void MoveTo(float newX, float newY)
+        public void MoveTo(int newX, int newY)
         {
             CordPoint.ChangeX(newX);
             CordPoint.ChangeY(newY);

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="laba1igor.My_Classes.MyCircle" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAIAAAAAAAIAAAAAAAAAIAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MyCircle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba1igor.My_Classes.MyFigure" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAMAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MyFigure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba1igor.My_Classes.MyEllipse" Collapsed="true">
+    <Position X="11.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACIAAAAAAAAAAgAEAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>MyLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MyGraphicLib.MyQuadrilateral" Collapsed="true">
+    <Position X="7" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAQAQAAAAEAAAAQEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MyQuadrilateral.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba1igor.My_Classes.MyPoint" Collapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAiZAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MyPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba1igor.My_Classes.MyRectangle" Collapsed="true">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MyRectangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba1igor.My_Classes.MyRhombus" Collapsed="true">
+    <Position X="7" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>MyRhombus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba1igor.My_Classes.MyRing" Collapsed="true">
+    <Position X="13.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAMEgAAAAQAAAAAAAA=</HashCode>
+      <FileName>MyRing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="laba1igor.My_Classes.MySquare" Collapsed="true">
+    <Position X="4.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MySquare.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

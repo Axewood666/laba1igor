@@ -1,4 +1,5 @@
 ﻿using laba1igor.My_Classes;
+using MyGraphicLib;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,15 +8,15 @@ using System.Windows.Forms;
 
 namespace laba1igor
 {
-    public partial class Form_Rect : Form
+    public partial class Form_Trapezoid : Form
     {
-        private MyRectangle[] _rectangles;
+        private MyTrapezoid[] _trapezoids;
         private MyPoint[] _points;
         private int _iter = 0;
         private int X_size;
         private int Y_size;
         private Random rand = new Random();
-        public Form_Rect()
+        public Form_Trapezoid()
         {
             InitializeComponent();
             buf = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -23,16 +24,16 @@ namespace laba1igor
             g.Clear(Color.WhiteSmoke);
             X_size = pictureBox1.Width - 3;
             Y_size = pictureBox1.Height - 3;
-            _rectangles = new MyRectangle[5];
+            _trapezoids = new MyTrapezoid[5];
             _points = new MyPoint[5];
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             label6.Text = "";
-            if (_iter == _rectangles.Length)
+            if (_iter == _trapezoids.Length)
             {
-                Array.Resize(ref _rectangles, _iter + 1);
+                Array.Resize(ref _trapezoids, _iter + 1);
                 Array.Resize(ref _points, _iter + 1);
             }
             var x_cord = int.TryParse(textBox1.Text, out var x1);
@@ -41,11 +42,11 @@ namespace laba1igor
             var Width = int.TryParse(textBox4.Text, out var W);
             if (x_cord && y_cord && Height && Width && H > 0 && W > 0)
             {
-                if (x1 >= 3 && x1 + W <= X_size && y1 >= 3 && y1 + H <= Y_size)
+                if (x1 >= 3 && x1 + W <= X_size && y1 - H >= 3 && y1 <= Y_size)
                 {
                     _points[_iter] = new MyPoint(x1, y1);
-                    _rectangles[_iter] = new MyRectangle(_points[_iter], W, H);
-                    _rectangles[_iter].Show(g);
+                    _trapezoids[_iter] = new MyTrapezoid(_points[_iter], W, H);
+                    _trapezoids[_iter].Show(g);
                     _iter++;
                 }
                 else
@@ -70,29 +71,29 @@ namespace laba1igor
             {
                 for (var i = _iter - 1; i >= 0; i--)
                 {
-                    _rectangles[i] = null;
+                    _trapezoids[i] = null;
                     _points[i] = null;
                 }
                 _iter = 0;
                 g.Clear(Color.WhiteSmoke);
-                MessageBox.Show("Все прямоугольники будут очищены!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                MessageBox.Show("Все трапеции будут очищены!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button1);
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && iterator >= 0 && iterator < _rectangles.Length && _rectangles[iterator] != null)
+                if (checkIter && iterator >= 0 && iterator < _trapezoids.Length && _trapezoids[iterator] != null)
                 {
                     RectDispose(iterator);
                     g.Clear(Color.WhiteSmoke);
                     for (var i = 0; i < _iter; i++)
                     {
-                        if (_rectangles[i] != null) _rectangles[i].Show(g);
+                        if (_trapezoids[i] != null) _trapezoids[i].Show(g);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Прямоугольника с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Трапеции с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }
@@ -110,30 +111,30 @@ namespace laba1igor
                 g.Clear(Color.WhiteSmoke);
                 for (var i = 0; i < _iter; i++)
                 {
-                    if (_rectangles[i] != null)
+                    if (_trapezoids[i] != null)
                     {
-                        int RandW = rand.Next(10, (int)(X_size - _rectangles[i].CordPoint.XStart));
-                        int RandH = rand.Next(10, (int)(Y_size - _rectangles[i].CordPoint.YStart));
-                        _rectangles[i].ResizeQua(RandW, RandH);
-                        _rectangles[i].Show(g);
+                        int RandW = rand.Next(1, X_size - _trapezoids[i].CordPoint.XStart);
+                        int RandH = rand.Next(1, _trapezoids[i].CordPoint.YStart);
+                        _trapezoids[i].ResizeQua(RandW, RandH);
+                        _trapezoids[i].Show(g);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && iterator >= 0 && iterator < _iter && _rectangles[iterator] != null)
+                if (checkIter && iterator >= 0 && iterator < _iter && _trapezoids[iterator] != null)
                 {
                     if (Width && Height && W > 0 && H > 0)
                     {
-                        if ((W < _rectangles[iterator].Width && H < _rectangles[iterator].Height) || _rectangles[iterator].CordPoint.XStart + W <= X_size && _rectangles[iterator].CordPoint.YStart + H <= Y_size)
+                        if ((W < _trapezoids[iterator].Width && H < _trapezoids[iterator].Height) || _trapezoids[iterator].CordPoint.XStart + W <= X_size && _trapezoids[iterator].CordPoint.YStart - H >= 3)
                         {
                             g.Clear(Color.WhiteSmoke);
 
-                            _rectangles[iterator].ResizeQua(W, H);
+                            _trapezoids[iterator].ResizeQua(W, H);
                             for (var i = 0; i < _iter; i++)
                             {
-                                if (_rectangles[i] != null) _rectangles[i].Show(g);
+                                if (_trapezoids[i] != null) _trapezoids[i].Show(g);
                             }
                         }
                         else
@@ -150,7 +151,7 @@ namespace laba1igor
                 }
                 else
                 {
-                    MessageBox.Show("Прямоугольника с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Трапеции с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }
@@ -168,23 +169,23 @@ namespace laba1igor
                 g.Clear(Color.WhiteSmoke);
                 for (var i = 0; i < _iter; i++)
                 {
-                    if (_rectangles[i] != null)
+                    if (_trapezoids[i] != null)
                     {
-                        int RandX = rand.Next(3, X_size - _rectangles[i].Width);
-                        int RandY = rand.Next(3, Y_size - _rectangles[i].Height);
-                        _rectangles[i].MoveTo(RandX, RandY);
-                        _rectangles[i].Show(g);
+                        int RandX = rand.Next(3, X_size - _trapezoids[i].Width);
+                        int RandY = rand.Next(_trapezoids[i].Height + 3, Y_size);
+                        _trapezoids[i].MoveTo(RandX, RandY);
+                        _trapezoids[i].Show(g);
                     }
                 }
             }
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && iterator >= 0 && iterator < _rectangles.Length && _rectangles[iterator] != null)
+                if (checkIter && iterator >= 0 && iterator < _trapezoids.Length && _trapezoids[iterator] != null)
                 {
                     if (x && y)
                     {
-                        if (newX > 3 && newY > 3 && newX + _rectangles[iterator].Width < X_size && newY + _rectangles[iterator].Height < Y_size)
+                        if (newX >= 3 && newX + _trapezoids[iterator].Width < X_size && newY - _trapezoids[iterator].Height >= 3)
                         {
                             g.Clear(Color.WhiteSmoke);
 
@@ -193,12 +194,12 @@ namespace laba1igor
                             {
                                 if (i == iterator)
                                 {
-                                    _rectangles[i].MoveTo(newX, newY);
-                                    _rectangles[i].Show(g);
+                                    _trapezoids[i].MoveTo(newX, newY);
+                                    _trapezoids[i].Show(g);
                                 }
                                 else
                                 {
-                                    if (_rectangles[i] != null) _rectangles[i].Show(g);
+                                    if (_trapezoids[i] != null) _trapezoids[i].Show(g);
                                 }
                             }
                         }
@@ -216,7 +217,7 @@ namespace laba1igor
                 }
                 else
                 {
-                    MessageBox.Show("Прямоугольника с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                    MessageBox.Show("Трапеции с таким номером нет!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
                 }
             }
@@ -235,17 +236,17 @@ namespace laba1igor
                 g.Clear(Color.WhiteSmoke);
                 for (var i = 0; i < _iter; i++)
                 {
-                    if (_rectangles[i] != null)
+                    if (_trapezoids[i] != null)
                     {
-                        if (_rectangles[i].CordPoint.XStart + _rectangles[i].Height <= X_size && _rectangles[i].CordPoint.YStart + _rectangles[i].Width <= Y_size)
+                        if (_trapezoids[i].CordPoint.XStart + _trapezoids[i].Height <= X_size && _trapezoids[i].CordPoint.YStart - _trapezoids[i].Width >= 3)
                         {
-                            _rectangles[i].ReverseQua();
-                            _rectangles[i].Show(g);
+                            _trapezoids[i].ReverseQua();
+                            _trapezoids[i].Show(g);
                         }
 
                         else
                         {
-                            _rectangles[i].Show(g);
+                            _trapezoids[i].Show(g);
                         }
                     }
 
@@ -254,9 +255,9 @@ namespace laba1igor
             else
             {
                 var checkIter = int.TryParse(textBox5.Text, out var iterator);
-                if (checkIter && iterator >= 0 && iterator < _rectangles.Length && _rectangles[iterator] != null)
+                if (checkIter && iterator >= 0 && iterator < _trapezoids.Length && _trapezoids[iterator] != null)
                 {
-                    if (_rectangles[iterator].CordPoint.XStart + _rectangles[iterator].Height <= X_size && _rectangles[iterator].CordPoint.YStart + _rectangles[iterator].Width <= Y_size)
+                    if (_trapezoids[iterator].CordPoint.XStart + _trapezoids[iterator].Height <= X_size && _trapezoids[iterator].CordPoint.YStart - _trapezoids[iterator].Width >= 3)
                     {
                         g.Clear(Color.WhiteSmoke);
 
@@ -265,12 +266,12 @@ namespace laba1igor
                         {
                             if (i == iterator)
                             {
-                                _rectangles[i].ReverseQua();
-                                _rectangles[i].Show(g);
+                                _trapezoids[i].ReverseQua();
+                                _trapezoids[i].Show(g);
                             }
                             else
                             {
-                                if (_rectangles[i] != null) _rectangles[i].Show(g);
+                                if (_trapezoids[i] != null) _trapezoids[i].Show(g);
                             }
                         }
                     }
@@ -290,7 +291,7 @@ namespace laba1igor
         }
         private void RectDispose(int iter)
         {
-            _rectangles[iter] = null;
+            _trapezoids[iter] = null;
             _points[iter] = null;
         }
         private void PictureBoxUpd()
@@ -300,11 +301,11 @@ namespace laba1igor
         }
         private void RandomArray()
         {
-            _rectangles = null;
+            _trapezoids = null;
             _points = null;
             g.Clear(Color.WhiteSmoke);
             var randIter = rand.Next(1, 10);
-            _rectangles = new MyRectangle[randIter];
+            _trapezoids = new MyTrapezoid[randIter];
             _points = new MyPoint[randIter];
             _iter = randIter;
 
@@ -314,10 +315,10 @@ namespace laba1igor
                 _points[i] = new MyPoint(rand.Next(50, 800),
                                            rand.Next(50, 400));
 
-                _rectangles[i] = new MyRectangle(_points[i],
+                _trapezoids[i] = new MyTrapezoid(_points[i],
                                             rand.Next(25, 100),
                                             rand.Next(25, 100));
-                _rectangles[i].Show(g);
+                _trapezoids[i].Show(g);
             }
 
             PictureBoxUpd();

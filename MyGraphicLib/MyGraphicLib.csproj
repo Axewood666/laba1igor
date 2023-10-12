@@ -52,7 +52,11 @@
     <Compile Include="MyRhombus.cs" />
     <Compile Include="MyRing.cs" />
     <Compile Include="MySquare.cs" />
+    <Compile Include="MyTrapezoid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

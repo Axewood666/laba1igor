@@ -26,15 +26,5 @@ namespace laba1igor.My_Classes
             canvas.DrawPolygon(pen, points);
             canvas.FillPolygon(brush, points);
         }
-        public void ResizeRhombus(Graphics canvas, int xNewSize, int yNewSize)
-        {
-            base.ResizeQua(xNewSize, yNewSize);
-            Show(canvas);
-        }
-        public void ReverseRhombus(Graphics canvas)
-        {
-            (Width, Height) = (Height, Width);
-            Show(canvas);
-        }
     }
 }

@@ -25,7 +25,7 @@ namespace laba1igor.My_Classes
             circle2.Show(canvas);
         }
 
-        public void MoveTo(Graphics canvas, float newX, float newY)
+        public void MoveTo(Graphics canvas, int newX, int newY)
         {
             circle1.CordPoint.ChangeX(newX);
             circle2.CordPoint.ChangeY(newY);

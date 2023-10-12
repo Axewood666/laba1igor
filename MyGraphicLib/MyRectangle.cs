@@ -22,12 +22,5 @@ namespace laba1igor.My_Classes
             canvas.DrawRectangle(pen, CordPoint.XStart, CordPoint.YStart, Width, Height);
             canvas.FillRectangle(brush, CordPoint.XStart, CordPoint.YStart, Width, Height);
         }
-
-        public void ResizeRectangle(Graphics canvas, float xNewSize, float yNewSize)
-        {
-            Width = (int)xNewSize;
-            Height = (int)yNewSize;
-            Show(canvas);
-        }
     }
 }

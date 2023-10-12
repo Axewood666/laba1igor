@@ -35,8 +35,8 @@ namespace laba1igor
                 Array.Resize(ref _rhombus, _iter + 1);
                 Array.Resize(ref _points, _iter + 1);
             }
-            var x_cord = float.TryParse(textBox1.Text, out var x1);
-            var y_cord = float.TryParse(textBox2.Text, out var y1);
+            var x_cord = int.TryParse(textBox1.Text, out var x1);
+            var y_cord = int.TryParse(textBox2.Text, out var y1);
             var Height = int.TryParse(textBox3.Text, out var H);
             var Width = int.TryParse(textBox4.Text, out var W);
             if (x_cord && y_cord && Height && Width && H > 0 && W > 0)
@@ -114,7 +114,9 @@ namespace laba1igor
                     {
                         int RandW = rand.Next(10, (int)(X_size - _rhombus[i].CordPoint.XStart));
                         int RandH = rand.Next(10, (int)(Y_size - _rhombus[i].CordPoint.YStart));
-                        _rhombus[i].ResizeRhombus(g, RandW, RandH);
+                        _rhombus[i].ResizeQua(RandW, RandH);
+                        _rhombus[i].Show(g);
+
                     }
                 }
             }
@@ -129,10 +131,9 @@ namespace laba1igor
                         {
                             g.Clear(Color.WhiteSmoke);
 
-                            _rhombus[iterator].ResizeRhombus(g, W, H);
+                            _rhombus[iterator].ResizeQua(W, H);
                             for (var i = 0; i < _iter; i++)
                             {
-                                if (i == iterator) continue;
                                 if (_rhombus[i] != null) _rhombus[i].Show(g);
                             }
                         }
@@ -159,8 +160,8 @@ namespace laba1igor
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            var x = float.TryParse(textBox6.Text, out var newX);
-            var y = float.TryParse(textBox7.Text, out var newY);
+            var x = int.TryParse(textBox6.Text, out var newX);
+            var y = int.TryParse(textBox7.Text, out var newY);
             var iterStr = textBox5.Text;
             if (iterStr == "")
             {
@@ -169,8 +170,8 @@ namespace laba1igor
                 {
                     if (_rhombus[i] != null)
                     {
-                        float RandX = rand.Next(3, (int)(X_size - _rhombus[i].Width));
-                        float RandY = rand.Next(3, (int)(Y_size - _rhombus[i].Height));
+                        int RandX = rand.Next(3, X_size - _rhombus[i].Width);
+                        int RandY = rand.Next(3, Y_size - _rhombus[i].Height);
                         _rhombus[i].MoveTo(RandX, RandY);
                         _rhombus[i].Show(g);
                     }
@@ -237,7 +238,11 @@ namespace laba1igor
                     if (_rhombus[i] != null)
                     {
                         if (_rhombus[i].CordPoint.XStart + _rhombus[i].Height <= X_size && _rhombus[i].CordPoint.YStart + _rhombus[i].Width <= Y_size)
-                            _rhombus[i].ReverseRhombus(g);
+                        {
+                            _rhombus[i].ReverseQua();
+                            _rhombus[i].Show(g);
+                        }
+
                         else
                         {
                             _rhombus[i].Show(g);
@@ -260,7 +265,8 @@ namespace laba1igor
                         {
                             if (i == iterator)
                             {
-                                _rhombus[i].ReverseRhombus(g);
+                                _rhombus[i].ReverseQua();
+                                _rhombus[i].Show(g);
                             }
                             else
                             {

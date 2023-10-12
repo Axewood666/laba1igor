@@ -35,8 +35,8 @@ namespace laba1igor
                 Array.Resize(ref _squares, _iter + 1);
                 Array.Resize(ref _points, _iter + 1);
             }
-            var x_cord = float.TryParse(textBox1.Text, out var x1);
-            var y_cord = float.TryParse(textBox2.Text, out var y1);
+            var x_cord = int.TryParse(textBox1.Text, out var x1);
+            var y_cord = int.TryParse(textBox2.Text, out var y1);
             var Side = int.TryParse(textBox4.Text, out var S);
             if (x_cord && y_cord && Side && S > 0)
             {
@@ -101,7 +101,7 @@ namespace laba1igor
         private void button3_Click(object sender, EventArgs e)
         {
             label6.Text = "";
-            var Size = float.TryParse(textBox3.Text, out var S);
+            var Size = int.TryParse(textBox3.Text, out var S);
             var iterStr = textBox5.Text;
             if (iterStr == "")
             {
@@ -110,8 +110,9 @@ namespace laba1igor
                 {
                     if (_squares[i] != null)
                     {
-                        float RandSize = rand.Next(10, Math.Min((int)(X_size - _squares[i].CordPoint.XStart), (int)(Y_size - _squares[i].CordPoint.YStart)));
-                        _squares[i].ResizeSquare(g, RandSize);
+                        int RandSize = rand.Next(10, Math.Min((int)(X_size - _squares[i].CordPoint.XStart), (int)(Y_size - _squares[i].CordPoint.YStart)));
+                        _squares[i].ResizeQua(RandSize, RandSize);
+                        _squares[i].Show(g);
                     }
                 }
             }
@@ -122,14 +123,13 @@ namespace laba1igor
                 {
                     if (Size && S > 0)
                     {
-                        if (S < _squares[iterator].Side || _squares[iterator].CordPoint.XStart + S <= X_size && _squares[iterator].CordPoint.YStart + S <= Y_size)
+                        if (S < _squares[iterator].Width || _squares[iterator].CordPoint.XStart + S <= X_size && _squares[iterator].CordPoint.YStart + S <= Y_size)
                         {
                             g.Clear(Color.WhiteSmoke);
 
-                            _squares[iterator].ResizeSquare(g, S);
+                            _squares[iterator].ResizeQua(S, S);
                             for (var i = 0; i < _iter; i++)
                             {
-                                if (i == iterator) continue;
                                 if (_squares[i] != null) _squares[i].Show(g);
                             }
                         }
@@ -157,8 +157,8 @@ namespace laba1igor
         private void button4_Click(object sender, EventArgs e)
         {
             label6.Text = "";
-            var x = float.TryParse(textBox6.Text, out var newX);
-            var y = float.TryParse(textBox7.Text, out var newY);
+            var x = int.TryParse(textBox6.Text, out var newX);
+            var y = int.TryParse(textBox7.Text, out var newY);
             var iterStr = textBox5.Text;
             if (iterStr == "")
             {
@@ -167,8 +167,8 @@ namespace laba1igor
                 {
                     if (_squares[i] != null)
                     {
-                        newX = rand.Next(3, X_size - (int)_squares[i].Side);
-                        newY = rand.Next(3, Y_size - (int)_squares[i].Side);
+                        newX = rand.Next(3, X_size - (int)_squares[i].Width);
+                        newY = rand.Next(3, Y_size - (int)_squares[i].Width);
                         _squares[i].MoveTo(newX, newY);
                         _squares[i].Show(g);
                     }
@@ -181,7 +181,7 @@ namespace laba1igor
                 {
                     if (x && y)
                     {
-                        if (newX > 3 && newY > 3 && newX + _squares[iterator].Side < X_size && newY + _squares[iterator].Side < Y_size)
+                        if (newX > 3 && newY > 3 && newX + _squares[iterator].Width < X_size && newY + _squares[iterator].Width < Y_size)
                         {
                             g.Clear(Color.WhiteSmoke);
 

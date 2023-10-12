@@ -35,8 +35,8 @@ namespace laba1igor
                 Array.Resize(ref _rings, _iter + 1);
                 Array.Resize(ref _points, _iter + 1);
             }
-            var x_cord = float.TryParse(textBox1.Text, out var x1);
-            var y_cord = float.TryParse(textBox2.Text, out var y1);
+            var x_cord = int.TryParse(textBox1.Text, out var x1);
+            var y_cord = int.TryParse(textBox2.Text, out var y1);
             var R = int.TryParse(textBox3.Text, out var radius);
             if (x_cord && y_cord && R && radius > 0)
             {
@@ -156,8 +156,8 @@ namespace laba1igor
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            var first = float.TryParse(textBox6.Text, out var newX);
-            var second = float.TryParse(textBox7.Text, out var newY);
+            var first = int.TryParse(textBox6.Text, out var newX);
+            var second = int.TryParse(textBox7.Text, out var newY);
             var iterStr = textBox5.Text;
             if (iterStr == "")
             {

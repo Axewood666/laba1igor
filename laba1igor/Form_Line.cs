@@ -35,8 +35,8 @@ namespace laba1igor
                 Array.Resize(ref _elipse, _iter + 1);
                 Array.Resize(ref _points, _iter + 1);
             }
-            var x_cord = float.TryParse(textBox1.Text, out var x1);
-            var y_cord = float.TryParse(textBox2.Text, out var y1);
+            var x_cord = int.TryParse(textBox1.Text, out var x1);
+            var y_cord = int.TryParse(textBox2.Text, out var y1);
             var Height = int.TryParse(textBox3.Text, out var H);
             var Width = int.TryParse(textBox4.Text, out var W);
             if (x_cord && y_cord && Height && Width && H > 0 && W > 0)
@@ -164,8 +164,8 @@ namespace laba1igor
         private void button4_Click(object sender, EventArgs e)
         {
             label6.Text = "";
-            var x = float.TryParse(textBox6.Text, out var newX);
-            var y = float.TryParse(textBox7.Text, out var newY);
+            var x = int.TryParse(textBox6.Text, out var newX);
+            var y = int.TryParse(textBox7.Text, out var newY);
             var iterStr = textBox5.Text;
             if (iterStr == "")
             {
@@ -244,7 +244,7 @@ namespace laba1igor
                     {
                         if (_elipse[i].CordPoint.XStart + _elipse[i].YSize / 2 <= X_size && _elipse[i].CordPoint.YStart + _elipse[i].Radius / 2 <= Y_size && _elipse[i].CordPoint.XStart - _elipse[i].YSize / 2 >= 3 && 
                             _elipse[i].CordPoint.YStart - _elipse[i].Radius / 2 >= 3)
-                            _elipse[i].ReverseRhombus(g);
+                            _elipse[i].ReverseEllipse(g);
                         else
                         {
                             _elipse[i].Show(g);
@@ -268,7 +268,7 @@ namespace laba1igor
                         {
                             if (i == iterator)
                             {
-                                _elipse[i].ReverseRhombus(g);
+                                _elipse[i].ReverseEllipse(g);
                             }
                             else
                             {

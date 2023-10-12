@@ -11,30 +11,30 @@ namespace laba1igor.My_Classes
 {
     public class MyPoint
     {
-        private float _xStart;
-        private float _yStart;
-        public float XStart
+        private int _xStart;
+        private int _yStart;
+        public int XStart
         {
             get => _xStart;
             set => _xStart = value;
         }
-        public float YStart
+        public int YStart
         {
             get => _yStart;
             set => _yStart = value;
         }
-        public MyPoint(float x, float y)
+        public MyPoint(int x, int y)
         {
             XStart = x;
             YStart = y;
             MessageBox.Show($"Точка x: {x} y: {y} создана!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
                     MessageBoxDefaultButton.Button1);
         }
-        public void ChangeX(float NewX)
+        public void ChangeX(int NewX)
         {
             XStart = NewX;
         }
-        public void ChangeY(float NewY)
+        public void ChangeY(int NewY)
         {
             YStart = NewY;
         }
