@@ -63,7 +63,6 @@ namespace laba1igor
 
         private void button2_Click(object sender, EventArgs e)
         {
-            label6.Text = "";
             var iterStr = textBox5.Text;
             if (iterStr == "")
             {
@@ -169,8 +168,7 @@ namespace laba1igor
                     {
                         newX = rand.Next(3, X_size - (int)_squares[i].Width);
                         newY = rand.Next(3, Y_size - (int)_squares[i].Width);
-                        _squares[i].MoveTo(newX, newY);
-                        _squares[i].Show(g);
+                        _squares[i].MoveTo(newX, newY, g);
                     }
                 }
             }
@@ -190,8 +188,7 @@ namespace laba1igor
                             {
                                 if (i == iterator)
                                 {
-                                    _squares[i].MoveTo(newX, newY);
-                                    _squares[i].Show(g);
+                                    _squares[i].MoveTo(newX, newY, g);
                                 }
                                 else
                                 {

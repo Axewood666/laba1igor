@@ -168,8 +168,7 @@ namespace laba1igor
                     {
                         newX = rand.Next(_circles[i].Radius + 3, X_size - _circles[i].Radius);
                         newY = rand.Next(_circles[i].Radius + 3, Y_size - _circles[i].Radius);
-                        _circles[i].MoveTo(newX, newY);
-                        _circles[i].Show(g);
+                        _circles[i].MoveTo(newX, newY, g);
                     }
                 }
             }
@@ -190,8 +189,7 @@ namespace laba1igor
                             {
                                 if (i == iterator)
                                 {
-                                    _circles[i].MoveTo(newX, newY);
-                                    _circles[i].Show(g);
+                                    _circles[i].MoveTo(newX, newY, g);
                                 }
                                 else
                                 {

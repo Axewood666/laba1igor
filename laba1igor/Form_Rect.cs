@@ -172,8 +172,7 @@ namespace laba1igor
                     {
                         int RandX = rand.Next(3, X_size - _rectangles[i].Width);
                         int RandY = rand.Next(3, Y_size - _rectangles[i].Height);
-                        _rectangles[i].MoveTo(RandX, RandY);
-                        _rectangles[i].Show(g);
+                        _rectangles[i].MoveTo(RandX, RandY, g);
                     }
                 }
             }
@@ -193,8 +192,7 @@ namespace laba1igor
                             {
                                 if (i == iterator)
                                 {
-                                    _rectangles[i].MoveTo(newX, newY);
-                                    _rectangles[i].Show(g);
+                                    _rectangles[i].MoveTo(newX, newY, g);
                                 }
                                 else
                                 {

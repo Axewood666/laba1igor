@@ -17,12 +17,16 @@ namespace laba1igor.My_Classes
             CordPoint = Cordinates;
         }
 
-        public abstract void Show(Graphics canvas);
+        public virtual void Show(Graphics canvas)
+        {
 
-        public void MoveTo(int newX, int newY)
+        }
+
+        public void MoveTo(int newX, int newY, Graphics canvas)
         {
             CordPoint.ChangeX(newX);
             CordPoint.ChangeY(newY);
+            Show(canvas);
         }
     }
 }

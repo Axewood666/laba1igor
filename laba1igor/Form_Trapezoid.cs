@@ -173,8 +173,7 @@ namespace laba1igor
                     {
                         int RandX = rand.Next(3, X_size - _trapezoids[i].Width);
                         int RandY = rand.Next(_trapezoids[i].Height + 3, Y_size);
-                        _trapezoids[i].MoveTo(RandX, RandY);
-                        _trapezoids[i].Show(g);
+                        _trapezoids[i].MoveTo(RandX, RandY, g);
                     }
                 }
             }
@@ -194,8 +193,7 @@ namespace laba1igor
                             {
                                 if (i == iterator)
                                 {
-                                    _trapezoids[i].MoveTo(newX, newY);
-                                    _trapezoids[i].Show(g);
+                                    _trapezoids[i].MoveTo(newX, newY,g);
                                 }
                                 else
                                 {

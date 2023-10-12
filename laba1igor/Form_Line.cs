@@ -176,8 +176,7 @@ namespace laba1igor
                     {
                         newX = rand.Next(_elipse[i].Radius / 2 + 3, X_size - _elipse[i].Radius / 2);
                         newY = rand.Next(_elipse[i].YSize / 2 + 3, Y_size - _elipse[i].YSize / 2);
-                        _elipse[i].MoveTo(newX, newY);
-                        _elipse[i].Show(g);
+                        _elipse[i].MoveTo(newX, newY, g);
                     }
                 }
             }
@@ -198,8 +197,7 @@ namespace laba1igor
                             {
                                 if (i == iterator)
                                 {
-                                    _elipse[i].MoveTo(newX, newY);
-                                    _elipse[i].Show(g);
+                                    _elipse[i].MoveTo(newX, newY, g);
                                 }
                                 else
                                 {

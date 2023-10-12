@@ -43,7 +43,6 @@ namespace laba1igor.My_Classes
         public void ResizeCircle(Graphics canvas, int sizeChange)
         {
             Radius = sizeChange;
-            Show(canvas);
         }
     }
 }

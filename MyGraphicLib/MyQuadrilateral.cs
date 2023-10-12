@@ -37,8 +37,8 @@ namespace MyGraphicLib
         }
         public MyQuadrilateral(MyPoint Cords, int width, int height) : base(Cords)
         {
-            this.Width = width;
-            this.Height = height;
+            Width = width;
+            Height = height;
         }
         public override abstract void Show(Graphics canvas);
         public void ResizeQua (int Nwidth, int Nheight)
