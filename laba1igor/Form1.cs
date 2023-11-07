@@ -58,5 +58,11 @@ namespace laba1igor
             var form_Trapezoid = new Form_Trapezoid();
             form_Trapezoid.Show();
         }
+
+        private void All_Click(object sender, EventArgs e)
+        {
+            var form_Figures = new Form_Figures();
+            form_Figures.Show();
+        }
     }
 }

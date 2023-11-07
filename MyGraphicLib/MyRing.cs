@@ -15,6 +15,7 @@ namespace laba1igor.My_Classes
         {
             circle1 = new MyCircle(Cords, radiusValue, Color.DarkRed);
             circle2 = new MyCircle(Cords, (int)(radiusValue * 0.75F), Color.WhiteSmoke);
+            Radius = radiusValue;
             MessageBox.Show($"Кольцо с центром в точке [{CordPoint.XStart}, {CordPoint.YStart}], c радиусом {Radius} создан!", "Уведомление!",
             MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
         }
@@ -37,7 +38,7 @@ namespace laba1igor.My_Classes
         {
             circle1.ResizeCircle(canvas, sizeChange);
             circle2.ResizeCircle(canvas, (int)(sizeChange * 0.75F));
-
+            Radius = sizeChange;    
             Show(canvas);
         }
     }

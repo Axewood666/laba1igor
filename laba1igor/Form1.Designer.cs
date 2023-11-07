@@ -36,6 +36,7 @@
             this.ring = new System.Windows.Forms.Button();
             this.Rhombus = new System.Windows.Forms.Button();
             this.Trapezoid = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // circle
@@ -125,11 +126,23 @@
             this.Trapezoid.UseVisualStyleBackColor = true;
             this.Trapezoid.Click += new System.EventHandler(this.Trapezoid_Click);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(3, 404);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(355, 72);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Все фигуры";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.All_Click);
+            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 413);
+            this.ClientSize = new System.Drawing.Size(361, 480);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Trapezoid);
             this.Controls.Add(this.Rhombus);
             this.Controls.Add(this.ring);
@@ -155,6 +168,7 @@
         private System.Windows.Forms.Button ring;
         private System.Windows.Forms.Button Rhombus;
         private System.Windows.Forms.Button Trapezoid;
+        private System.Windows.Forms.Button button1;
     }
 }
 

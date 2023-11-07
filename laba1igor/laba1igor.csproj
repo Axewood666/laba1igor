@@ -52,6 +52,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Figures.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Figures.Designer.cs">
+      <DependentUpon>Form_Figures.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Trapezoid.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Figures.resx">
+      <DependentUpon>Form_Figures.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Trapezoid.resx">
       <DependentUpon>Form_Trapezoid.cs</DependentUpon>

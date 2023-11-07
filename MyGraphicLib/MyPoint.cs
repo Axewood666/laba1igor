@@ -27,8 +27,8 @@ namespace laba1igor.My_Classes
         {
             XStart = x;
             YStart = y;
-            MessageBox.Show($"Точка x: {x} y: {y} создана!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
-                    MessageBoxDefaultButton.Button1);
+           // MessageBox.Show($"Точка x: {x} y: {y} создана!", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                   // MessageBoxDefaultButton.Button1);
         }
         public void ChangeX(int NewX)
         {
