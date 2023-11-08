@@ -111,6 +111,7 @@ namespace laba1igor
                         newRadius = rand.Next(10, (int)Math.Min(Math.Min(_circles[i].CordPoint.XStart, X_size - _circles[i].CordPoint.XStart),
                             Math.Min(_circles[i].CordPoint.YStart, Y_size - _circles[i].CordPoint.YStart)) - 3);
                         _circles[i].ResizeCircle(g, newRadius);
+                        _circles[i].Show(g);
                     }
                 }
             }
@@ -129,7 +130,6 @@ namespace laba1igor
                             _circles[iterator].ResizeCircle(g, newRadius);
                             for (var i = 0; i < _iter; i++)
                             {
-                                if (i == iterator) continue;
                                 if (_circles[i] != null) _circles[i].Show(g);
                             }
                         }
