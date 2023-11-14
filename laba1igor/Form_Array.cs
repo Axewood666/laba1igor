@@ -29,7 +29,7 @@ namespace laba1igor
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (_arr != null) { _arr = new MyArray(); }
+            if (_arr == null) { _arr = new MyArray(); }
             else { MessageBox.Show("Массив уже создан, сначала удалите его", "Уведомление!", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
 
@@ -62,9 +62,12 @@ namespace laba1igor
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            g.Clear(Color.WhiteSmoke);
-            _arr.Iterator(g,(int)Methods.Move);
-            PictureBoxUpd();
+            if (_arr != null)
+            {
+                g.Clear(Color.WhiteSmoke);
+                _arr.Iterator(g, (int)Methods.Move);
+                PictureBoxUpd();
+            }
         }
         private void PictureBoxUpd()
         {
