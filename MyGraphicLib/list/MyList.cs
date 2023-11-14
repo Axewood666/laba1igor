@@ -21,8 +21,8 @@ namespace MyGraphicLib.list
         {
             MessageBox.Show("Создан список!", "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-       
-        public void Iterator(Graphics g,int method)
+
+        public void Iterator(Graphics g, int method)
         {
             switch (method)
             {

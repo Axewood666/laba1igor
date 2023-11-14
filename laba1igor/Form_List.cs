@@ -83,8 +83,6 @@ namespace laba1igor
                 _list.Iterator(g, (int)Methods.ShowTo);
                 PictureBoxUpd();
             }
-
-
         }
     }
 }
