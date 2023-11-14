@@ -64,5 +64,17 @@ namespace laba1igor
             var form_Figures = new Form_Figures();
             form_Figures.Show();
         }
+
+        private void Array_Click(object sender, EventArgs e)
+        {
+            var form_Array = new Form_Array();
+            form_Array.Show();
+        }
+
+        private void List_Click(object sender, EventArgs e)
+        {
+            var form_List = new Form_List();
+            form_List.Show();
+        }
     }
 }

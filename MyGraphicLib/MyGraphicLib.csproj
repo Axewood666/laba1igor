@@ -43,16 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyCircle.cs" />
+    <Compile Include="list\MyList.cs" />
+    <Compile Include="MyArray.cs" />
+    <Compile Include="circle\MyCircle.cs" />
+    <Compile Include="list\MyElement.cs" />
     <Compile Include="MyFigure.cs" />
-    <Compile Include="MyLine.cs" />
+    <Compile Include="circle\MyLine.cs" />
     <Compile Include="MyPoint.cs" />
-    <Compile Include="MyQuadrilateral.cs" />
-    <Compile Include="MyRectangle.cs" />
-    <Compile Include="MyRhombus.cs" />
-    <Compile Include="MyRing.cs" />
-    <Compile Include="MySquare.cs" />
-    <Compile Include="MyTrapezoid.cs" />
+    <Compile Include="Quadrilateral\MyQuadrilateral.cs" />
+    <Compile Include="Quadrilateral\MyRectangle.cs" />
+    <Compile Include="Quadrilateral\MyRhombus.cs" />
+    <Compile Include="circle\MyRing.cs" />
+    <Compile Include="Quadrilateral\MySquare.cs" />
+    <Compile Include="Quadrilateral\MyTrapezoid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

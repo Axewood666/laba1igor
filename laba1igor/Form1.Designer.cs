@@ -37,6 +37,8 @@
             this.Rhombus = new System.Windows.Forms.Button();
             this.Trapezoid = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.Array = new System.Windows.Forms.Button();
+            this.List = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // circle
@@ -137,11 +139,35 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.All_Click);
             // 
+            // Array
+            // 
+            this.Array.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Array.Location = new System.Drawing.Point(3, 482);
+            this.Array.Name = "Array";
+            this.Array.Size = new System.Drawing.Size(166, 72);
+            this.Array.TabIndex = 9;
+            this.Array.Text = "Массив";
+            this.Array.UseVisualStyleBackColor = true;
+            this.Array.Click += new System.EventHandler(this.Array_Click);
+            // 
+            // List
+            // 
+            this.List.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.List.Location = new System.Drawing.Point(193, 482);
+            this.List.Name = "List";
+            this.List.Size = new System.Drawing.Size(165, 72);
+            this.List.TabIndex = 10;
+            this.List.Text = "Лист";
+            this.List.UseVisualStyleBackColor = true;
+            this.List.Click += new System.EventHandler(this.List_Click);
+            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 480);
+            this.ClientSize = new System.Drawing.Size(361, 559);
+            this.Controls.Add(this.List);
+            this.Controls.Add(this.Array);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Trapezoid);
             this.Controls.Add(this.Rhombus);
@@ -169,6 +195,8 @@
         private System.Windows.Forms.Button Rhombus;
         private System.Windows.Forms.Button Trapezoid;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Array;
+        private System.Windows.Forms.Button List;
     }
 }
 

@@ -52,6 +52,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_List.Designer.cs">
+      <DependentUpon>Form_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Array.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Array.Designer.cs">
+      <DependentUpon>Form_Array.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Figures.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +116,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_List.resx">
+      <DependentUpon>Form_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Array.resx">
+      <DependentUpon>Form_Array.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Figures.resx">
       <DependentUpon>Form_Figures.cs</DependentUpon>
